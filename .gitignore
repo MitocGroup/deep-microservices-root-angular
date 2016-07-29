@@ -72,3 +72,4 @@ deeploy.json*
 *.provisioning.json*
 
 src/test-app
+src/**/frontend/typings
