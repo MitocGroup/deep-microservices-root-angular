@@ -71,6 +71,4 @@ deeploy.json*
 *_config.json*
 *.provisioning.json*
 
-src/*
-!src/deep-root-angular2
-src/**/frontend/_build
+src/test-app
