@@ -1,8 +1,6 @@
 import { bootstrap } from '@angular/platform-browser-dynamic';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { RootAngular } from './app/index';
-
-declare let DeepFramework : any;
-declare let System : any;
 
 let deepKernel = DeepFramework.Kernel;
 
@@ -12,8 +10,8 @@ deepKernel.bootstrap(() => {
   let allProviders : Array<any>= [];
 
   for (let script of bootstrapScripts) {
-    promises.push(Promise.resolve(System.import(script)).then((providers) => {
-      let finalProviders : Array<string> = [];
+    promises.push(System.import(script).then((providers) => {
+      let finalProviders : Array<any> = [];
       for (let index in providers) {
         if (!providers.hasOwnProperty(index)) {
           continue;
@@ -27,6 +25,13 @@ deepKernel.bootstrap(() => {
   }
 
   Promise.all(promises).then(() => {
+    if (DeepFramework.Kernel.isLocalhost) {
+      allProviders.push({
+        provide: LocationStrategy,
+        useClass: HashLocationStrategy
+      });
+    }
+
     bootstrap(RootAngular, allProviders)
   })
 });
