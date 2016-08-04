@@ -9,6 +9,9 @@
     "noImplicitAny": false,
     "outDir": "./_build/"
   },
+  "exclude": [
+    "node_modules"
+  ],
   "files": [
     "./js/bootstrap.ts",
     "./typings.d.ts"
