@@ -76,3 +76,5 @@ deeploy.json*
 
 src/test-app
 src/**/frontend/typings
+
+.DS_Store
