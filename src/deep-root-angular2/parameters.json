@@ -1,0 +1,133 @@
+{
+  "frontend" : {},
+  "backend" : {},
+  "globals": {
+    "version": {
+      "displayName": "Application version",
+      "type": "string",
+      "required": false,
+      "example": "1.2.3"
+    },
+    "favicon": {
+      "displayName": "Favicon",
+      "type": "string",
+      "required": false,
+      "pattern": "^@[^:]+:(?:\\/?[\\w\\-\\d]+)+\\.(ico)$",
+      "default": "@deep-root-angular2:img/favicon.ico",
+      "example": "@deep-root-angular2:img/favicon.ico"
+    },
+    "pageLoader|src": {
+      "displayName": "Page loader source",
+      "type": "string",
+      "required": false,
+      "pattern": "^@[^:]+:(?:\\/?[\\w\\-\\d]+)+\\.(png|jpg|gif)$",
+      "default": "@deep-root-angular2:img/loader.gif",
+      "example": "@deep-root-angular2:img/loader.gif"
+    },
+    "pageLoader|alt": {
+      "displayName": "Page loader alternate text",
+      "type": "string",
+      "required": false,
+      "default": "Loading...",
+      "example": "Loading..."
+    },
+    "gtmContainerId": {
+      "displayName": "Google Tag Manager (GTM) domain identifier",
+      "type": "string",
+      "required": false,
+      "pattern": "^GTM\\-[a-zA-Z0-9]+$",
+      "example": "GTM-XXXX"
+    },
+    "search|enabled": {
+      "displayName": "Enable Search cluster?",
+      "type": "boolean",
+      "required": false,
+      "example": false
+    },
+    "logDrivers|sentry|dsn": {
+      "displayName": "Sentry DSN",
+      "type": "string",
+      "required": false,
+      "pattern": "^https?://[^:]+(:[^@]+)?@app\\.getsentry\\.com/[0-9]+$",
+      "example": "https://72kshdbrgkebghkrb34iu5yb3ub:23l5hbk2v2jhg52uygvygvhmgv@app.getsentry.com/45747"
+    },
+    "userPool|enabled": {
+      "displayName": "Enable Cognito User Pool Identity Provider?",
+      "type": "boolean",
+      "required": false,
+      "example": false
+    },
+    "serviceWorker|cache|enabled": {
+      "displayName": "Enable Service Worker html caching?",
+      "type": "boolean",
+      "required": false,
+      "example": false
+    },
+    "api|cache|enabled": {
+      "displayName": "Enable API caching?",
+      "type": "boolean",
+      "required": false,
+      "example": false
+    },
+    "api|cache|clusterSize": {
+      "displayName": "API cache cluster size ('0.5', '1.6', '6.1', '13.5', '28.4', '58.2', '118', '237') GB",
+      "type": "string",
+      "required": false,
+      "example": "0.5"
+    },
+    "api|cloudWatch|logging|enabled": {
+      "displayName": "Enable CloudWatch logs for API Gateway?",
+      "type": "boolean",
+      "required": false,
+      "example": false
+    },
+    "api|cloudWatch|logging|logLevel": {
+      "displayName": "API Gateway CloudWatch log level ('OFF', 'INFO', 'ERROR')?",
+      "type": "string",
+      "required": false,
+      "example": "INFO"
+    },
+    "api|cloudWatch|logging|dataTrace": {
+      "displayName": "Log full requests/responses data for API Gateway?",
+      "type": "boolean",
+      "required": false,
+      "example": false
+    },
+    "api|cloudWatch|metrics": {
+      "displayName": "Enable CloudWatch metrics for API Gateway?",
+      "type": "boolean",
+      "required": false,
+      "example": false
+    },
+    "security|userPool|triggers|PreSignUp": {
+      "displayName": "User pool trigger on pre-sign-up",
+      "type": "string",
+      "required": false,
+      "example": "@deep-microapp:user:pre-sign-up"
+    },
+    "security|userPool|triggers|PostConfirmation": {
+      "displayName": "User pool trigger on post-confirmation",
+      "type": "string",
+      "required": false,
+      "example": "@deep-microapp:user:post-confirmation"
+    },
+    "security|userPool|triggers|PreAuthentication": {
+      "displayName": "User pool trigger on pre-authentication",
+      "type": "string",
+      "required": false,
+      "example": "@deep-microapp:user:pre-authentication"
+    },
+    "security|userPool|triggers|PostAuthentication": {
+      "displayName": "User pool trigger on post-authentication",
+      "type": "string",
+      "required": false,
+      "example": "@deep-microapp:user:post-authentication"
+    },
+    "security|userPool|triggers|CustomMessage": {
+      "displayName": "User pool trigger on custom-message",
+      "type": "string",
+      "required": false,
+      "example": "@deep-microapp:user:custom-message"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "identifier": "deep-root-angular2",
+  "name": "deep-root-angular2",
+  "description": "Manages root structure of a microservice based on AngularJS 2 framework.",
+  "version": "0.0.1",
+  "propertyRoot": true,
+  "author": {
+    "name": "Mitoc Group",
+    "email": "hello@mitocgroup.com",
+    "website": "http://www.mitocgroup.com"
+  },
+  "contributors": [
+    {
+      "name": "DEEP Dev Team",
+      "email": "hello@deep.mg",
+      "website": "https://www.deep.mg"
+    }
+  ],
+  "dependencies": {
+  }
+}
