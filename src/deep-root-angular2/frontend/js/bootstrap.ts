@@ -5,20 +5,20 @@ let deepKernel = DeepFramework.Kernel;
 deepKernel.bootstrap(() => {
   let bootstrapScripts : Array<string> = deepKernel.get('deep_frontend_bootstrap_vector');
   let promises : Array<any> = [];
-  let allProviders : Array<any>= [];
+  let allProviders : Array<any> = [];
   let promise : any;
 
   for (let script of bootstrapScripts) {
     promise = System.import(script)
-      .then((providers) => {
+      .then((modules) => {
         let finalProviders : Array<any> = [];
 
-        for (let index in providers) {
-          if (!providers.hasOwnProperty(index)) {
+        for (let index in modules) {
+          if (!modules.hasOwnProperty(index)) {
             continue;
           }
 
-          finalProviders.push(providers[index]);
+          finalProviders.push(modules[index]);
         }
 
         allProviders = allProviders.concat(finalProviders);

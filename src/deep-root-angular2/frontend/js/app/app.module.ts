@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {LocationStrategy, HashLocationStrategy} from '@angular/common';
-import { RootAngular } from './index';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { RootAngular, routing } from './index';
 
-const imports = [BrowserModule].concat(DeepFramework.angularDependencies);
+const imports = [BrowserModule, routing].concat(DeepFramework.angularDependencies);
 
 let providers = [];
 
