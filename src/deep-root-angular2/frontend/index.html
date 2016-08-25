@@ -30,8 +30,6 @@
     <script src="node_modules/zone.js/dist/zone.js"></script>
     <script src="node_modules/reflect-metadata/Reflect.js"></script>
     <script src="node_modules/systemjs/dist/system.src.js"></script>
-    <!-- 2. Configure SystemJS -->
-    <script src="./systemjs.config.js"></script>
 
     <deep-favicon/>
     <deep-version/>
@@ -43,8 +41,10 @@
 
 
     <root-angular-app>
-      <div class="loading">
-          <deep-loader/>
+      <div id="init-loader">
+          <div class="loading">
+              <deep-loader/>
+          </div>
       </div>
     </root-angular-app>
 

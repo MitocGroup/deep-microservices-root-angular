@@ -14,7 +14,7 @@
     "node_modules"
   ],
   "files": [
-    "./js/bootstrap.ts",
+    "./bootstrap.ts",
     "./js/app/app.module.ts",
     "./typings.d.ts"
   ],

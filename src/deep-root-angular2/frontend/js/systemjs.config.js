@@ -1,6 +1,6 @@
 'use strict';
 
-(function (globals) {
+System.register([], function ($__export) {
   var config, map, packages, ngPackageNames, setPackageConfig;
 
   // map tells the System loader where to look for things
@@ -44,10 +44,16 @@
 
   // Add package entries for angular packages
   ngPackageNames.forEach(setPackageConfig);
+
   config = {
     map: map,
-    packages: packages,
-    defaultJSExtensions: 'js',
+    packages: packages
   };
-  System.config(config);
-})(this);
+
+  $__export('config', config);
+
+  return {
+    setters: [],
+    execute: function() {}
+  };
+});
