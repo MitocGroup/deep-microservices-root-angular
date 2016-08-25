@@ -5,6 +5,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "sourceMap": true,
     "removeComments": false,
     "noImplicitAny": false,
     "outDir": "./_build/"
@@ -14,6 +15,7 @@
   ],
   "files": [
     "./js/bootstrap.ts",
+    "./js/app/app.module.ts",
     "./typings.d.ts"
   ],
   "atom": {
