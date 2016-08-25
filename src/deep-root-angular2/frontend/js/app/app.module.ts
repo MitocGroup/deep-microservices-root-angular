@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { RootAngular, routing } from './index';
+import { RootAngular, DefaultRootAngular, routing } from './index';
 
 const imports = [BrowserModule, routing].concat(DeepFramework.angularDependencies);
 
@@ -12,7 +12,7 @@ if (DeepFramework.Kernel.isLocalhost) {
 }
 
 @NgModule({
-  declarations: [RootAngular],
+  declarations: [RootAngular, DefaultRootAngular],
   imports: imports,
   bootstrap: [RootAngular],
   providers: providers,
