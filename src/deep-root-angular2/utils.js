@@ -66,7 +66,7 @@ function watchMicroservice(frontendPath, typescriptPath) {
     });
   });
 
-  return new Promise((resolve) => {console.log(`cd ${typescriptPath} && tsc -w`);
+  return new Promise((resolve) => {
     exec(`cd ${typescriptPath} && tsc -w`, (error, stdout, stderr) => {
       if (error) {
         console.error(stderr);
