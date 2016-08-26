@@ -3,9 +3,6 @@
 let exec = require('child_process').exec;
 let path = require('path');
 let fs = require('fs');
-let watch = require('watch');
-let walk = require('walk');
-let mkdirp = require('mkdirp');
 
 /**
  * @param {String} fullPath - relative path to package.json folder from microapplication
@@ -37,8 +34,10 @@ function installNodeModules(fullPath, prodFlag) {
 /**
  * Watch html and javascript files of a specific microapplication
  * @param {String} frontendPath - path to frontend folder of the microapplication
+ * @param {String} typescriptPath - path to tsconfig file of the microapplication
  */
 function watchMicroservice(frontendPath, typescriptPath) {
+  let watch = require('watch');
 
   function _buildPath(file) {
     return path.join(frontendPath, _destinationFolderName(), file.replace(frontendPath, ''));
@@ -82,10 +81,12 @@ function watchMicroservice(frontendPath, typescriptPath) {
  * @param {String} frontendPath
  */
 function initializeApplication(frontendPath) {
-  let stat, walkerPromise, tscPromise;
+  let walk = require('walk');
+  let mkdirp = require('mkdirp');
+  let walkerPromise, tscPromise;
 
   try {
-    stat = fs.statSync(path.join(frontendPath, _destinationFolderName()));
+    let stat = fs.statSync(path.join(frontendPath, _destinationFolderName()));
 
     if (stat.isDirectory()) {
       return new Promise(resolve => resolve());
