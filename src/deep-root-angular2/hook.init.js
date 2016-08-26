@@ -1,5 +1,7 @@
 'use strict';
 
+var utils = require('./utils');
+
 module.exports = function(callback) {
   var spawn = require('child_process').spawn;
   var path = require('path');
@@ -28,11 +30,21 @@ module.exports = function(callback) {
     console.error(error);
   });
 
-  installation.on('close', function(code) {
-    if (code !== 0) {
-      console.error('Framework installation failed (exit with code ' + code + ')');
-    }
+  let installationPromise = new Promise((resolve) => {
+    installation.on('close', function(code) {
+      if (code !== 0) {
+        console.error('Framework installation failed (exit with code ' + code + ')');
+      }
 
-    callback();
+      resolve();
+    });
   });
+
+  let directory = this.microservice.autoload._frontend.replace(/(\/_build)$/, '');
+
+  installationPromise.then(() => {
+    return utils.installNodeModules(directory, false);
+  }).then(() => {
+    return utils.initializeApplication(directory)
+  }).then(callback).catch(callback);
 };

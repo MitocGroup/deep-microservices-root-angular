@@ -1,6 +1,6 @@
 'use strict';
 
-System.register([], function ($__export) {
+System.register([], function (exportMethod) {
   var config, map, packages, ngPackageNames, setPackageConfig;
 
   // map tells the System loader where to look for things
@@ -50,7 +50,7 @@ System.register([], function ($__export) {
     packages: packages
   };
 
-  $__export('config', config);
+  exportMethod('config', config);
 
   return {
     setters: [],
