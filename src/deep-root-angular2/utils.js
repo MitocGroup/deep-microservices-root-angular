@@ -8,7 +8,7 @@ let fs = require('fs');
  * @param {String} fullPath - relative path to package.json folder from microapplication
  * @param {Boolean} prodFlag
  */
-function installNodeModules(fullPath, prodFlag) {console.error(fullPath);
+function installNodeModules(fullPath, prodFlag) {
   let flag = prodFlag ? '--production' : '';
 
   return new Promise(resolve => {
