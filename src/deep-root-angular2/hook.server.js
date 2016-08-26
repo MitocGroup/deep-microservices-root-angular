@@ -9,7 +9,7 @@ function hook(callback) {
   }
 
   let directory = path.join(__dirname, 'frontend');
-
+  return callback();
   return utils.watchMicroservice(directory, directory)
     .then(callback)
     .catch((error) => {

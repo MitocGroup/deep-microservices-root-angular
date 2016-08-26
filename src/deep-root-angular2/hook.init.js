@@ -43,8 +43,13 @@ module.exports = function(callback) {
   let directory = this.microservice.autoload._frontend.replace(/(\/_build)$/, '');
 
   installationPromise.then(() => {
+    return utils.installNodeModules(__dirname, false);
+  }).then(() => {
     return utils.installNodeModules(directory, false);
   }).then(() => {
     return utils.initializeApplication(directory)
-  }).then(callback).catch(callback);
+  }).then(callback).catch((error) => {
+    console.error(error);
+    callback();
+  });
 };
