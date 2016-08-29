@@ -38,14 +38,34 @@ function installNodeModules(fullPath, prodFlag) {
  */
 function watchMicroservice(frontendPath, typescriptPath) {
   let watch = require('watch');
+  let mkdirp = require('mkdirp');
+  let sass = require('node-sass');
 
   function _buildPath(file) {
     return path.join(frontendPath, _destinationFolderName(), file.replace(frontendPath, ''));
   }
 
-  function _copyFile(file) {
-    if (_testFileName(file)) {
-      fs.createReadStream(file).pipe(fs.createWriteStream(_buildPath(file)));
+  function _copyFile(file, stat) {
+    if (_isNotTypeScriptFile(file)) {
+      if (stat.isDirectory()) {
+        mkdirp(_buildPath(file), error => {
+          if (error) {
+            console.error(error);
+          }
+        });
+      } else {
+        mkdirp(path.dirname(_buildPath(file)), (error) => {
+          if (error) {
+            return console.error(error);
+          }
+
+          if (_isSassFile(file)) {
+            fs.writeFileSync(_buildPath(file.replace(/\.(sass|scss)$/, '.css')), sass.renderSync({file}));
+          } else {
+            fs.createReadStream(file).pipe(fs.createWriteStream(_buildPath(file)));
+          }
+        });
+      }
     }
   }
 
@@ -59,7 +79,7 @@ function watchMicroservice(frontendPath, typescriptPath) {
     monitor.on('changed', _copyFile);
 
     monitor.on('removed', (file) => {
-      if (_testFileName(file)) {
+      if (_isNotTypeScriptFile(file)) {
         fs.unlink(_buildPath(file));
       }
     });
@@ -100,7 +120,7 @@ function initializeApplication(frontendPath) {
   }
 
   function _copyFile(file) {
-    if (_testFileName(file)) {
+    if (_isNotTypeScriptFile(file)) {
       return fs.createReadStream(file).pipe(fs.createWriteStream(_buildPath(file)));
     }
 
@@ -148,8 +168,18 @@ function initializeApplication(frontendPath) {
  * @returns {boolean}
  * @private
  */
-function _testFileName(fileName) {
+function _isNotTypeScriptFile(fileName) {
   return !(/\.(ts)$/.test(fileName));
+}
+
+/**
+ * Check if file is not typescript
+ * @param fileName
+ * @returns {boolean}
+ * @private
+ */
+function _isSassFile(fileName) {
+  return (/\.(sass|scss)$/.test(fileName));
 }
 
 /**
