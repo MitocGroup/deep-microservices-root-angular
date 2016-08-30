@@ -46,7 +46,7 @@ function watchMicroservice(frontendPath, typescriptPath) {
   }
 
   function _copyFile(file, stat) {
-    if (_isNotTypeScriptFile(file)) {
+    if (_isNotTypeScriptFile(file) && _isNotBuildFolder(file)) {
       if (stat.isDirectory()) {
         mkdirp(_buildPath(file), error => {
           if (error) {
@@ -60,7 +60,7 @@ function watchMicroservice(frontendPath, typescriptPath) {
           }
 
           if (_isSassFile(file)) {
-            fs.writeFileSync(_buildPath(file.replace(/\.(sass|scss)$/, '.css')), sass.renderSync({file}));
+            fs.writeFileSync(_buildPath(file.replace(/\.(sass|scss)$/, '.css')), sass.renderSync({file}).css);
           } else {
             fs.createReadStream(file).pipe(fs.createWriteStream(_buildPath(file)));
           }
@@ -121,13 +121,19 @@ function initializeApplication(frontendPath) {
 
   function _copyFile(file) {
     if (_isNotTypeScriptFile(file)) {
-      return fs.createReadStream(file).pipe(fs.createWriteStream(_buildPath(file)));
+      if (_isSassFile(file)) {
+        fs.writeFileSync(_buildPath(file.replace(/\.(sass|scss)$/, '.css')), sass.renderSync({file}).css);
+      } else {
+        fs.createReadStream(file).pipe(fs.createWriteStream(_buildPath(file)));
+      }
     }
 
     return false;
   }
 
-  let walker = walk.walk(frontendPath);
+  let walker = walk.walk(frontendPath, {
+    filters: [ '_build' ]
+  });
 
   walkerPromise = new Promise ((resolve) => {
     walker.on('file', (root, fileStats, next) => {
@@ -180,6 +186,16 @@ function _isNotTypeScriptFile(fileName) {
  */
 function _isSassFile(fileName) {
   return (/\.(sass|scss)$/.test(fileName));
+}
+
+/**
+ * Check if _build folder is present in path
+ * @param {String} fileName
+ * @returns {Boolean}
+ * @private
+ */
+function _isNotBuildFolder(fileName) {
+  return !(/^(.*\/)?_build(\/.*)?$/i.test(fileName));
 }
 
 /**
