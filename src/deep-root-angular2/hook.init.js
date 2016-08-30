@@ -68,8 +68,6 @@ module.exports = function(callback) {return installGlobalDependencies().then(cal
   let directory = this.microservice.autoload._frontend.replace(/(\/_build)$/, '');
 
   Promise.all([installationPromise, installGlobalDependencies()]).then(() => {
-    return utils.installNodeModules(__dirname, false);
-  }).then(() => {
     return utils.installNodeModules(directory, false);
   }).then(() => {
     return utils.initializeApplication(directory)
