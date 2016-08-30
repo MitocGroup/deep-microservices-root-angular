@@ -38,14 +38,34 @@ function installNodeModules(fullPath, prodFlag) {
  */
 function watchMicroservice(frontendPath, typescriptPath) {
   let watch = require('watch');
+  let mkdirp = require('mkdirp');
+  let sass = require('node-sass');
 
   function _buildPath(file) {
     return path.join(frontendPath, _destinationFolderName(), file.replace(frontendPath, ''));
   }
 
-  function _copyFile(file) {
-    if (_testFileName(file)) {
-      fs.createReadStream(file).pipe(fs.createWriteStream(_buildPath(file)));
+  function _copyFile(file, stat) {
+    if (_isNotTypeScriptFile(file) && _isNotBuildFolder(file)) {
+      if (stat.isDirectory()) {
+        mkdirp(_buildPath(file), error => {
+          if (error) {
+            console.error(error);
+          }
+        });
+      } else {
+        mkdirp(path.dirname(_buildPath(file)), (error) => {
+          if (error) {
+            return console.error(error);
+          }
+
+          if (_isSassFile(file)) {
+            fs.writeFileSync(_buildPath(file.replace(/\.(sass|scss)$/, '.css')), sass.renderSync({file}).css);
+          } else {
+            fs.createReadStream(file).pipe(fs.createWriteStream(_buildPath(file)));
+          }
+        });
+      }
     }
   }
 
@@ -59,7 +79,7 @@ function watchMicroservice(frontendPath, typescriptPath) {
     monitor.on('changed', _copyFile);
 
     monitor.on('removed', (file) => {
-      if (_testFileName(file)) {
+      if (_isNotTypeScriptFile(file)) {
         fs.unlink(_buildPath(file));
       }
     });
@@ -100,14 +120,20 @@ function initializeApplication(frontendPath) {
   }
 
   function _copyFile(file) {
-    if (_testFileName(file)) {
-      return fs.createReadStream(file).pipe(fs.createWriteStream(_buildPath(file)));
+    if (_isNotTypeScriptFile(file)) {
+      if (_isSassFile(file)) {
+        fs.writeFileSync(_buildPath(file.replace(/\.(sass|scss)$/, '.css')), sass.renderSync({file}).css);
+      } else {
+        fs.createReadStream(file).pipe(fs.createWriteStream(_buildPath(file)));
+      }
     }
 
     return false;
   }
 
-  let walker = walk.walk(frontendPath);
+  let walker = walk.walk(frontendPath, {
+    filters: [ '_build' ]
+  });
 
   walkerPromise = new Promise ((resolve) => {
     walker.on('file', (root, fileStats, next) => {
@@ -148,8 +174,28 @@ function initializeApplication(frontendPath) {
  * @returns {boolean}
  * @private
  */
-function _testFileName(fileName) {
+function _isNotTypeScriptFile(fileName) {
   return !(/\.(ts)$/.test(fileName));
+}
+
+/**
+ * Check if file is not typescript
+ * @param fileName
+ * @returns {boolean}
+ * @private
+ */
+function _isSassFile(fileName) {
+  return (/\.(sass|scss)$/.test(fileName));
+}
+
+/**
+ * Check if _build folder is present in path
+ * @param {String} fileName
+ * @returns {Boolean}
+ * @private
+ */
+function _isNotBuildFolder(fileName) {
+  return !(/^(.*\/)?_build(\/.*)?$/i.test(fileName));
 }
 
 /**
