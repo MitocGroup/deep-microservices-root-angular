@@ -2,7 +2,7 @@
 
 var utils = require('./utils');
 
-module.exports = function(callback) {return installGlobalDependencies().then(callback);
+module.exports = function(callback) {
   var spawn = require('child_process').spawn;
   var path = require('path');
   var installation = null;
