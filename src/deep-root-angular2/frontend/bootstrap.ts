@@ -94,6 +94,8 @@ class BootstrapHelper {
       }
 
       return config;
+    }).catch((error) => {
+      return error;
     });
   }
 

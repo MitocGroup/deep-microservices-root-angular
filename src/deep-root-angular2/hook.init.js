@@ -1,8 +1,33 @@
 'use strict';
 
 var utils = require('./utils');
+var exec = require('child_process').exec;
 
-module.exports = function(callback) {
+function installGlobalDependencies() {
+  return new Promise((resolve) => {
+    exec('which tsc', (error, stdout, stderr) => {
+      if (stdout) {
+        return resolve();
+      }
+
+      if (stderr) {
+        console.error(stderr);
+        return resolve();
+      }
+
+      console.log('Installing typescript');
+      exec('npm install -g typings typescript', (error) => {
+        if (error) {
+          console.error(error);
+        }
+
+        return resolve();
+      })
+    });
+  });
+}
+
+module.exports = function(callback) {return installGlobalDependencies().then(callback);
   var spawn = require('child_process').spawn;
   var path = require('path');
   var installation = null;
@@ -42,7 +67,7 @@ module.exports = function(callback) {
 
   let directory = this.microservice.autoload._frontend.replace(/(\/_build)$/, '');
 
-  installationPromise.then(() => {
+  Promise.all([installationPromise, installGlobalDependencies()]).then(() => {
     return utils.installNodeModules(__dirname, false);
   }).then(() => {
     return utils.installNodeModules(directory, false);
