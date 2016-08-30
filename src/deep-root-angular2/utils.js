@@ -78,8 +78,8 @@ function watchMicroservice(frontendPath, typescriptPath) {
 
     monitor.on('changed', _copyFile);
 
-    monitor.on('removed', (file) => {
-      if (_isNotTypeScriptFile(file)) {
+    monitor.on('removed', (file, stat) => {
+      if (_isNotTypeScriptFile(file) && !stat.isDirectory()) {
         fs.unlink(_buildPath(file));
       }
     });
@@ -103,6 +103,7 @@ function watchMicroservice(frontendPath, typescriptPath) {
 function initializeApplication(frontendPath) {
   let walk = require('walk');
   let mkdirp = require('mkdirp');
+  let sass = require('node-sass');
   let walkerPromise, tscPromise;
 
   try {
