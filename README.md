@@ -2,7 +2,7 @@ deep-microservices-root-angular2
 ================================
 
 [![Build Status](https://travis-ci.org/MitocGroup/deep-microservices-root-angular2.svg?branch=master)](https://travis-ci.org/MitocGroup/deep-microservices-root-angular2)
-[![Codacy Badge](https://api.codacy.com/project/badge/coverage/ef7c8d169940408dbeb10c634c8b4259)](https://www.codacy.com/app/MitocGroup/deep-microservices-root-angular2)
+[![Test Coverage](https://codeclimate.com/repos/578a001c60cba500670067b2/badges/ec814eb407b79c52dee0/coverage.svg)](https://codeclimate.com/repos/578a001c60cba500670067b2/coverage)
 
 deep-microservices-root-angular2 is the fundamental building block used by cloud-native web applications
 built on top of [DEEP Framework](https://github.com/MitocGroup/deep-framework) and
@@ -33,26 +33,26 @@ inside Git Bash.
 ### Step 2. Install Microservice(s) Locally
 
 ```bash
-deepify install github://MitocGroup/deep-microservices-root-angular2 ~/deep-microservices-root-angular2
+deepify install github://MitocGroup/deep-microservices-todomvc ~/deep-microservices-todomvc
 ```
 
 > Path parameter in all `deepify` commands is optional and if not specified, assumes current
-working directory. Therefore you can skip `~/deep-microservices-root-angular2` by executing
-`mkdir ~/deep-microservices-root-angular2 && cd ~/deep-microservices-root-angular2` before `deepify install`.
+working directory. Therefore you can skip `~/deep-microservices-todomvc` by executing
+`mkdir ~/deep-microservices-todomvc && cd ~/deep-microservices-todomvc` before `deepify install`.
 
 ### Step 3. Run Microservice(s) in Development
 
 ```bash
-deepify server ~/deep-microservices-root-angular2 -o
+deepify server ~/deep-microservices-todomvc -o
 ```
 
 > When this step is finished, you can open in your browser the link *http://localhost:8000*
-and enjoy the deep-microservices-root-angular2 running locally.
+and enjoy the deep-microservices-todomvc running locally.
 
 ### Step 4. Deploy Microservice(s) to Production
 
 ```bash
-deepify deploy ~/deep-microservices-root-angular2
+deepify deploy ~/deep-microservices-todomvc
 ```
 
 > Amazon CloudFront distribution takes up to 20 minutes to provision, therefore don’t worry
@@ -61,7 +61,7 @@ if it returns an HTTP error in the first couple of minutes.
 ### Step 5. Remove Microservice(s) from Production
 
 ```bash
-deepify undeploy ~/deep-microservices-root-angular2
+deepify undeploy ~/deep-microservices-todomvc
 ```
 
 > Amazon CloudFront distribution takes up to 20 minutes to unprovision. That's why `deepify`
