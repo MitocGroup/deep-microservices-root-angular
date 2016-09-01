@@ -100,7 +100,7 @@ function watchMicroservice(frontendPath, typescriptPath) {
  * Copy html and javascript files on first start
  * @param {String} frontendPath
  */
-function initializeApplication(frontendPath, forceUpdate = false) {
+function initializeApplication(frontendPath, forceUpdate) {
   let walk = require('walk');
   let mkdirp = require('mkdirp');
   let sass = require('node-sass');
