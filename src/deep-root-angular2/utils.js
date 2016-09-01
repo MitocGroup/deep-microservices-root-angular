@@ -100,20 +100,22 @@ function watchMicroservice(frontendPath, typescriptPath) {
  * Copy html and javascript files on first start
  * @param {String} frontendPath
  */
-function initializeApplication(frontendPath) {
+function initializeApplication(frontendPath, forceUpdate = false) {
   let walk = require('walk');
   let mkdirp = require('mkdirp');
   let sass = require('node-sass');
   let walkerPromise, tscPromise;
 
-  try {
-    let stat = fs.statSync(path.join(frontendPath, _destinationFolderName()));
+  if (!forceUpdate) {
+    try {
+      let stat = fs.statSync(path.join(frontendPath, _destinationFolderName()));
 
-    if (stat.isDirectory()) {
-      return new Promise(resolve => resolve());
+      if (stat.isDirectory()) {
+        return new Promise(resolve => resolve());
+      }
+    } catch(error) {
+      console.log('Initialize application');
     }
-  } catch(error) {
-    console.log('Initialize application');
   }
 
   function _buildPath(file) {
