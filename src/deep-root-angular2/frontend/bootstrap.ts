@@ -123,7 +123,7 @@ class BootstrapHelper {
   }
 }
 
-deepKernel.bootstrap(() => {
+deepKernel.bootstrap((kernel) => {
   let bootstrapScripts : Array<string> = deepKernel.get('deep_frontend_bootstrap_vector');
   let bootstrapHelper : BootstrapHelper = new BootstrapHelper();
 
@@ -132,10 +132,14 @@ deepKernel.bootstrap(() => {
     System.config(config);
 
     bootstrapHelper.getBootstrapScripts(bootstrapScripts).then((allProviders) => {
+      let module;
       DeepFramework.angularDependencies = allProviders;
 
-      System.import('js/app/app.module.js').then((module) => {
-        System.import('@angular/platform-browser-dynamic').then((content) => {
+      System.import('js/app/app.module.js').then((angularModule) => {
+        module = angularModule;
+        return System.import('@angular/platform-browser-dynamic');
+      }).then((content) => {
+        kernel.get('security').anonymousLogin(() => {
           content.platformBrowserDynamic().bootstrapModule(module.RootAngularModule);
         });
       });

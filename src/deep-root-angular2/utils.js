@@ -80,7 +80,9 @@ function watchMicroservice(frontendPath, typescriptPath) {
 
     monitor.on('removed', (file, stat) => {
       if (_isNotTypeScriptFile(file) && !stat.isDirectory()) {
-        fs.unlink(_buildPath(file));
+        try {
+          fs.unlinkSync(_buildPath(file));
+        } catch(e) {}
       }
     });
   });
@@ -99,6 +101,7 @@ function watchMicroservice(frontendPath, typescriptPath) {
 /**
  * Copy html and javascript files on first start
  * @param {String} frontendPath
+ * @param {Boolean} forceUpdate
  */
 function initializeApplication(frontendPath, forceUpdate) {
   let walk = require('walk');
