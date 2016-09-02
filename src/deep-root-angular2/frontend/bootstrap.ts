@@ -3,6 +3,7 @@ let deepKernel = DeepFramework.Kernel;
 interface Config {
   map: {},
   packages: {},
+  meta: {},
   defaultJSExtensions?: string
 }
 
@@ -53,6 +54,7 @@ class BootstrapHelper {
     let finalConfig : Config = {
       map: {},
       packages: {},
+      meta: {},
       defaultJSExtensions: this._defaultJSExtensions,
     };
 
@@ -65,6 +67,7 @@ class BootstrapHelper {
 
         Object.assign(finalConfig.map, config.map);
         Object.assign(finalConfig.packages, config.packages);
+        Object.assign(finalConfig.meta, config.meta);
       });
 
       promises.push(promise);
