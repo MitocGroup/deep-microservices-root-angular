@@ -45,7 +45,7 @@ done
 echo -e "\nTypeScript validation complete\n"
 
 if ! $PASS; then
-  echo -e "\033[41mCOMMIT FAILED:\033[0m Your commit contains files that should pass ESLint/TSLint but do not. Please fix the TS/LintESLint errors and try again.\n"
+  echo -e "\033[41mCOMMIT FAILED:\033[0m Your commit contains files that should pass ESLint/TSLint but do not. Please fix the ESLint/TSLint errors and try again.\n"
   exit 1
 else
   echo -e "\033[42mCOMMIT SUCCEEDED\033[0m\n"
