@@ -1,0 +1,8 @@
+{
+  "extends": "tslint:latest",
+  "rules": {
+    "no-constructor-vars": true
+  },
+  "rulesDirectory": [
+  ]
+}
