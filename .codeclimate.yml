@@ -29,6 +29,7 @@ exclude_paths:
   - "**/tests"
   - "tmp/**/*"
   - "vendor/**/*"
+  - "lib/**/*"
   - ".idea/"
   - "**.spec.js"
   - "**.min.js"

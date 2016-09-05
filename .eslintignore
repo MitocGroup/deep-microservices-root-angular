@@ -3,6 +3,7 @@ test/**/*
 **/tests
 **/vendor
 tmp/**/*
+lib/**/*
 **.spec.js
 **.min.js
 **.min.css
