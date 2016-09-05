@@ -10,6 +10,7 @@ engines:
           mass_threshold: 300
     exclude_paths:
       - "**/tests"
+      - "**/lib"
   eslint:
     enabled: true
     channel: "eslint-2"
