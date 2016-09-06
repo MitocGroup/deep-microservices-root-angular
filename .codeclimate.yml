@@ -1,4 +1,3 @@
----
 engines:
   csslint:
     enabled: true
@@ -9,37 +8,37 @@ engines:
         javascript:
           mass_threshold: 300
     exclude_paths:
-      - "**/tests"
-      - "**/lib"
+      - '**/tests'
+      - '**/lib'
   eslint:
     enabled: true
-    channel: "eslint-2"
+    channel: eslint-2
   fixme:
     enabled: true
 ratings:
   paths:
-  - "**.css"
-  - "**.inc"
-  - "**.js"
-  - "**.jsx"
-  - "**.es6"
-  - "**.module"
+    - '**.css'
+    - '**.inc'
+    - '**.js'
+    - '**.jsx'
+    - '**.es6'
+    - '**.module'
 exclude_paths:
-  - "bin/**/*"
-  - "test/**/*"
-  - "**/tests"
-  - "tmp/**/*"
-  - "vendor/**/*"
-  - "lib/**/*"
-  - ".idea/"
-  - "**.spec.js"
-  - "**.min.js"
-  - "**.min.css"
-  - "DeepFramework.js"
-  - "deep-framework.js"
-  - "**/frontend/_build/"
-  - "**/dist"
-  - "**/node_modules"
-  - "**/packages"
-  - "**/font-awesome.css"
-  - "**/materialdesignicons.css"
+  - '**/bin'
+  - '**/test'
+  - '**/tests'
+  - '**/tmp'
+  - '**/vendor'
+  - '**/lib'
+  - '**/.idea'
+  - '**.spec.js'
+  - '**.min.js'
+  - '**.min.css'
+  - '**/frontend/_build/'
+  - '**/dist'
+  - '**/node_modules'
+  - '**/packages'
+  - '**/font-awesome.css'
+  - '**/materialdesignicons.css'
+  - '**/DeepFramework.js'
+  - '**/deep-framework.js'
