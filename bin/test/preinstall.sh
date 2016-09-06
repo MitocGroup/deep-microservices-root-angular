@@ -33,6 +33,7 @@ source $(dirname $0)/_head.sh
 ###################################################
 ### Install dependencies locally if don't exist ###
 ###################################################
+(if [ ! -d "node_modules/codelyzer" ]; then npm install codelyzer; fi) &&\
 (if [ ! -d "node_modules/isparta" ]; then npm install isparta@3.1.x; fi) &&\
 (if [ ! -d "node_modules/sync-exec" ]; then npm install sync-exec@^0.6.x; fi) &&\
 (if [ ! -d "node_modules/fs-extra" ]; then npm install fs-extra@0.x.x; fi) &&\
