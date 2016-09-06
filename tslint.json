@@ -1,9 +1,93 @@
 {
-//  "extends": "tslint:latest",
   "rulesDirectory": [
-    "node_modules/codelyzer"
+    "node_modules/codelyzer",
+    "node_modules/tslint-eslint-rules/dist/rules"
   ],
   "rules": {
+    // Possible Errors as for ESLint
+    "trailing-comma": [
+      true,
+      {
+        "multiline": "always",
+        "singleline": "never"
+      }
+    ],
+    "no-conditional-assignment": true,
+    "no-console": [
+      false
+    ],
+    "no-constant-condition": true,
+    "no-control-regex": true,
+    "no-debugger": true,
+    "no-duplicate-key": true,
+    "no-duplicate-case": true,
+    "no-empty": true,
+    "no-empty-character-class": true,
+    "no-ex-assign": true,
+    "no-extra-boolean-cast": true,
+    "no-extra-semi": true,
+    "no-inner-declarations": [
+      true,
+      "functions"
+    ],
+    "no-invalid-regexp": true,
+    "no-irregular-whitespace": true,
+    "no-regex-spaces": true,
+    "no-unexpected-multiline": true,
+    "no-unreachable": true,
+    "use-isnan": true,
+    "valid-jsdoc": [
+      false
+    ],
+    "valid-typeof": true,
+    // Best Practices
+    "curly": true,
+    "switch-default": true,
+    "triple-equals": true,
+    "forin": true,
+    "no-arg": true,
+    "no-invalid-this": false,
+    "no-duplicate-variable": true,
+    "radix": true,
+    // Variables
+    "no-shadowed-variable": false,
+    "no-unused-variable": true,
+    // Node.js and CommonJS
+    "handle-callback-err": [
+      true,
+      "^(err|error|anySpecificError)$"
+    ],
+    // Stylistic Issues
+    "array-bracket-spacing": [
+      false
+    ],
+    "block-spacing": [
+      false
+    ],
+    "brace-style": [
+      false
+    ],
+    "variable-name": [
+      true,
+      "check-format"
+    ],
+    "indent": [
+      true,
+      "spaces"
+    ],
+    "linebreak-style": [
+      false,
+      "unix"
+    ],
+    "new-parens": false,
+    "object-curly-spacing": [
+      false
+    ],
+    // ECMAScript 6
+    "arrow-parens": [
+      false
+    ],
+    // Angular2 rules
     "directive-selector-name": [
       true,
       "camelCase"
