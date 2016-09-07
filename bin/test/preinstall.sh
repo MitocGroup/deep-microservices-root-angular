@@ -11,7 +11,7 @@ source $(dirname $0)/_head.sh
 (npm list -g babel-cli --depth=0 || npm install -g babel-cli) &&\
 (npm list -g babel-polyfill --depth=0 || npm install -g babel-polyfill) &&\
 (npm list -g babel-preset-es2015 --depth=0 || npm install -g babel-preset-es2015) &&\
-(npm list -g deepify@$(npm show deepify version) --depth=0 || npm install -g deepify) &&\
+( (npm list -g deepify@$(npm show deepify version) --depth=0 || npm install -g deepify) && CHECK_DEEP_PACKAGE_MANAGER) &&\
 (npm list -g jspm --depth=0 || npm install -g jspm@0.16.15)  &&\
 (npm list -g browserify --depth=0 || npm install -g browserify@11.2.x) &&\
 (npm list -g jscs --depth=0 || npm install -g jscs@2.1.x) &&\

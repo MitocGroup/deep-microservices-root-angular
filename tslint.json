@@ -4,7 +4,6 @@
     "node_modules/tslint-eslint-rules/dist/rules"
   ],
   "rules": {
-    // Possible Errors as for ESLint
     "trailing-comma": [
       true,
       {
@@ -40,7 +39,6 @@
       false
     ],
     "valid-typeof": true,
-    // Best Practices
     "curly": true,
     "switch-default": true,
     "triple-equals": true,
@@ -49,15 +47,12 @@
     "no-invalid-this": false,
     "no-duplicate-variable": true,
     "radix": true,
-    // Variables
     "no-shadowed-variable": false,
     "no-unused-variable": true,
-    // Node.js and CommonJS
     "handle-callback-err": [
       true,
       "^(err|error|anySpecificError)$"
     ],
-    // Stylistic Issues
     "array-bracket-spacing": [
       false
     ],
@@ -83,11 +78,9 @@
     "object-curly-spacing": [
       false
     ],
-    // ECMAScript 6
     "arrow-parens": [
       false
     ],
-    // Angular2 rules
     "directive-selector-name": [
       true,
       "camelCase"

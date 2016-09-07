@@ -3,7 +3,6 @@ test/**/*
 **/tests
 **/vendor
 tmp/**/*
-lib/**/*
 **.spec.js
 **.min.js
 **.min.css
@@ -72,3 +71,6 @@ deeploy.*.json
 config.core.js
 config.system.js
 config.test.js
+
+# Custom ignore file
+lib/**/*
