@@ -60,10 +60,9 @@ else
   ### Configure git user ###
   ##########################
   if [ -z $GITHUB_OAUTH_TOKEN ]; then
-    git config --global github.user devs-deep
-    git config --global github.token $GITHUB_OAUTH_TOKEN
-  else
     echo "No GitHub token"
+  else
+    deepify registry config github --set "devs-deep:${GITHUB_OAUTH_TOKEN}"
   fi
 
 fi
