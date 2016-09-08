@@ -69,4 +69,4 @@ config.system.js
 config.test.js
 
 # Custom ignore files
-lib/**/*
+**/lib
