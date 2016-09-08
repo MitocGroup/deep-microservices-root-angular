@@ -1,5 +1,7 @@
 'use strict';
 
+/*eslint global-require: 0 */
+
 var utils = require('./utils');
 
 module.exports = function(callback) {
