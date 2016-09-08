@@ -42,10 +42,6 @@ deep-framework.js
 # Debug log from npm
 npm-debug.log
 
-
-#####=== DEEP ===#####
-**/src/deep-root-*
-
 # Compiled libraries
 **/compile/
 **/lib.compiled/
@@ -72,5 +68,5 @@ config.core.js
 config.system.js
 config.test.js
 
-# Custom ignore file
+# Custom ignore files
 lib/**/*
