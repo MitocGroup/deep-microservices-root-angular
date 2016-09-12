@@ -140,6 +140,13 @@ deepKernel.bootstrap((kernel) => {
 
       System.import('js/app/app.module.js').then((angularModule) => {
         module = angularModule;
+
+        return System.import('@angular/core');
+      }).then((angularCore) => {
+        if (deepKernel.env === 'stage' || deepKernel.env === 'prod') {
+          angularCore.enableProdMode();
+        }
+
         return System.import('@angular/platform-browser-dynamic');
       }).then((content) => {
         kernel.get('security').anonymousLogin(() => {
