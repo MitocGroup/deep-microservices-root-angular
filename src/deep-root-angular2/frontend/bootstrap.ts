@@ -1,3 +1,5 @@
+import { enableProdMode } from '@angular/core';
+
 let deepKernel = DeepFramework.Kernel;
 
 interface Config {
@@ -143,6 +145,10 @@ deepKernel.bootstrap((kernel) => {
         return System.import('@angular/platform-browser-dynamic');
       }).then((content) => {
         kernel.get('security').anonymousLogin(() => {
+          if (deepKernel.env === 'stage' || deepKernel.env === 'prod') {
+            enableProdMode();
+          }
+
           content.platformBrowserDynamic().bootstrapModule(module.RootAngularModule);
         });
       });
