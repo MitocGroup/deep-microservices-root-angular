@@ -16,6 +16,7 @@ tmp/**/*
 
 # DeepFramework
 DeepFramework.js
+deep-framework.js
 
 ## Directory-based project format:
 .idea/
@@ -41,10 +42,6 @@ DeepFramework.js
 # Debug log from npm
 npm-debug.log
 
-
-#####=== DEEP ===#####
-**/src/deep-root-*
-
 # Compiled libraries
 **/compile/
 **/lib.compiled/
@@ -65,3 +62,11 @@ deeploy.*.json
 
 # Frontend dependencies
 **/frontend/_build/
+
+# Jspm config file
+config.core.js
+config.system.js
+config.test.js
+
+# Custom ignore files
+**/lib
