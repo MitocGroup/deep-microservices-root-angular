@@ -1,5 +1,9 @@
 'use strict';
 
+/*eslint global-require: 0 */
+/*eslint no-use-before-define: 0 */
+/*eslint no-empty: 0 */
+
 let exec = require('child_process').exec;
 let path = require('path');
 let fs = require('fs');
