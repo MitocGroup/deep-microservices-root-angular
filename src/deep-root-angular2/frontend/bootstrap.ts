@@ -1,3 +1,13 @@
+
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AppModule } from './js/app/app.module';
+
+const platform = platformBrowserDynamic();
+
+platform.bootstrapModule(AppModule);
+
+
+/**
 let deepKernel = DeepFramework.Kernel;
 
 interface Config {
@@ -11,10 +21,7 @@ class BootstrapHelper {
   _deepKernel: any = DeepFramework.Kernel;
   _deepAsset: any = this._deepKernel.get('asset');
 
-  /**
-   * @param {String[]} links
-   * @returns {Promise}
-   */
+
   getBootstrapScripts(links) {
     let promises : Array<any> = [];
     let allProviders : Array<any> = [];
@@ -44,9 +51,6 @@ class BootstrapHelper {
     });
   }
 
-  /**
-   * @returns {Promise}
-   */
   getSystemConfigs() {
     let promises : Array<any> = [];
     let promise : any;
@@ -78,12 +82,7 @@ class BootstrapHelper {
     });
   }
 
-  /**
-   * @param {String} microservice
-   * @param {String} configPath
-   * @returns {Promise}
-   * @private
-   */
+
   _getConfig(microservice, configPath) {
     return System.import(configPath).then((exportData) => {
       let config : Config = exportData.config;
@@ -102,10 +101,6 @@ class BootstrapHelper {
     });
   }
 
-  /**
-   * @returns {String[]}
-   * @private
-   */
   get _getConfigLinks() {
     let links : any = {};
     let microservices : Array<string> = Object.keys(DeepFramework.Kernel.config.microservices);
@@ -117,10 +112,7 @@ class BootstrapHelper {
     return links;
   }
 
-  /**
-   * @returns {String}
-   * @params
-   */
+
   get _defaultJSExtensions() {
     return 'js';
   }
@@ -156,3 +148,4 @@ deepKernel.bootstrap((kernel) => {
     });
   });
 });
+ */
