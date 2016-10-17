@@ -1,10 +1,12 @@
 'use strict';
 
-let path = require('path');
-let fs = require('fs');
-let _root = path.resolve(__dirname, '..');
-let ROOT_ANGULAR2_IDENTIFIER = 'deep-root-angular2';
-let webpackMerge = require('webpack-merge');
+const path = require('path');
+const fs = require('fs');
+const _root = path.resolve(__dirname, '..');
+const webpackMerge = require('webpack-merge');
+const ROOT_ANGULAR2_IDENTIFIER = 'deep-root-angular2';
+const DEEPKG_FILE = 'deepkg.json';
+const WEBPACK_CONFIG_FILE = 'webpack.config.js';
 
 function root(args) {
   args = Array.prototype.slice.call(arguments, 0);
@@ -12,32 +14,21 @@ function root(args) {
 }
 
 function webpackDepsConfig() {
-  let propertyPath = path.join(__dirname, '..', '..', '..');
-  let files = fs.readdirSync(propertyPath);
-  let webpackConfig = {};
+  let paths = getMicroservicesPaths();
 
-  for (let i in files) {
-    if (!files.hasOwnProperty(i)) {
-      continue;
-    }
+  return paths.reduce((webpackConfig, msPath) => {
+    let deepkgFile = path.join(msPath, DEEPKG_FILE);
+    let deepkgObj = require(deepkgFile);
+    let frontendPath = (deepkgObj.autoload || {}).frontend || 'frontend';
+    let webpackFile = path.join(msPath, frontendPath, WEBPACK_CONFIG_FILE);
 
-    let file = files[i];
-    let fullPath = path.join(propertyPath, file);
-    let webpackFile = path.join(fullPath, 'frontend', 'webpack.config.js');
-
-    if (fs.statSync(fullPath).isDirectory() &&
-      fs.existsSync(path.join(fullPath, 'deepkg.json')) &&
-      file !== ROOT_ANGULAR2_IDENTIFIER &&
-      fs.existsSync(webpackFile)) {
-
-      webpackConfig = webpackMerge(require(webpackFile), webpackConfig);
-    }
-  }
-  
-  return webpackConfig;
+    return fs.existsSync(webpackFile) ?
+      webpackMerge(webpackConfig, require(webpackFile)) :
+      webpackConfig;
+  }, {});
 }
 
-function getMicroservices() {
+function getMicroservicesPaths() {
   let propertyPath = path.join(__dirname, '..', '..', '..');
   let files = fs.readdirSync(propertyPath);
   let paths = [];
@@ -51,13 +42,20 @@ function getMicroservices() {
     let fullPath = path.join(propertyPath, file);
 
     if (fs.statSync(fullPath).isDirectory() &&
-      fs.existsSync(path.join(fullPath, 'deepkg.json')) &&
+      fs.existsSync(path.join(fullPath, DEEPKG_FILE)) &&
       file !== ROOT_ANGULAR2_IDENTIFIER) {
-      paths.push(file);
+
+      paths.push(fullPath);
     }
   }
-  
+
   return paths;
+}
+
+function getMicroservices() {
+  let paths = getMicroservicesPaths();
+
+  return paths.map(p => path.basename(p));
 }
 
 exports.webpackDepsConfig = webpackDepsConfig;
