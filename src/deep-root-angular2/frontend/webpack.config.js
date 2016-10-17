@@ -1,8 +1,9 @@
+var webpackMerge = require('webpack-merge');
 var webpack = require('webpack');
 var path = require('path');
 var helpers = require('./config/helpers');
 
-module.exports = {
+module.exports = webpackMerge(helpers.webpackDepsConfig(), {
   context: helpers.root('..', '..'),
   entry: {
     'bootstrap': helpers.root('bootstrap.ts'),
@@ -13,11 +14,14 @@ module.exports = {
   resolve: {
     root: helpers.root(),
     modulesDirectories: [
-      'node_modules',
-      helpers.root('node_modules'),
-    ].concat(helpers.getMicroservices().map(ms => path.join(ms, 'frontend', 'node_modules'))),
-    extensions: ['', '.js', '.ts'],
-    modules: ['node_modules'],
+      helpers.root('node_modules'),].concat(
+      helpers.getMicroservices().map(ms => path.join(ms, 'frontend', 'node_modules'))
+    ),
+    extensions: ['', '.js', 'es6', '.ts', 'json'],
+  },
+
+  get resolveLoader() {
+    return this.resolve;
   },
 
   module: {
@@ -25,13 +29,13 @@ module.exports = {
       {
         test: /\.ts$/,
         loaders: [
-          require.resolve('awesome-typescript-loader'),
-          require.resolve('angular2-template-loader'),
+          'awesome-typescript-loader',
+          'angular2-template-loader',
         ]
       },
       {
         test: /\.html$/,
-        loader: require.resolve('raw-loader'),
+        loader: 'raw-loader',
         exclude: [helpers.root('index.html')],
       },
       {
@@ -41,8 +45,17 @@ module.exports = {
       {
         test: /\.css$/,
         loader: 'raw'
-      }
-    ]
+      },
+      {
+        test: /\.es6$/,
+        loader: 'babel',
+        exclude: /(node_modules|bower_components|dist)/i,
+      },
+      {
+        test: /\.json$/,
+        loader: 'json',
+      },
+    ],
   },
 
   plugins: [
@@ -56,4 +69,4 @@ module.exports = {
     filename: '[name].js',
     chunkFilename: '[id].chunk.js'
   },
-};
+});
