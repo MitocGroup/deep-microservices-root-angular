@@ -1,5 +1,7 @@
 'use strict';
 
+/* eslint global-require: 0 */
+
 const path = require('path');
 const fs = require('fs');
 const _root = path.resolve(__dirname, '..');
@@ -11,21 +13,6 @@ const WEBPACK_CONFIG_FILE = 'webpack.config.js';
 function root(args) {
   args = Array.prototype.slice.call(arguments, 0);
   return path.join.apply(path, [_root].concat(args));
-}
-
-function webpackDepsConfig() {
-  let paths = getMicroservicesPaths();
-
-  return paths.reduce((webpackConfig, msPath) => {
-    let deepkgFile = path.join(msPath, DEEPKG_FILE);
-    let deepkgObj = require(deepkgFile);
-    let frontendPath = (deepkgObj.autoload || {}).frontend || 'frontend';
-    let webpackFile = path.join(msPath, frontendPath, WEBPACK_CONFIG_FILE);
-
-    return fs.existsSync(webpackFile) ?
-      webpackMerge(webpackConfig, require(webpackFile)) :
-      webpackConfig;
-  }, {});
 }
 
 function getMicroservicesPaths() {
@@ -50,6 +37,21 @@ function getMicroservicesPaths() {
   }
 
   return paths;
+}
+
+function webpackDepsConfig() {
+  let paths = getMicroservicesPaths();
+
+  return paths.reduce((webpackConfig, msPath) => {
+    let deepkgFile = path.join(msPath, DEEPKG_FILE);
+    let deepkgObj = require(deepkgFile);
+    let frontendPath = (deepkgObj.autoload || {}).frontend || 'frontend';
+    let webpackFile = path.join(msPath, frontendPath, WEBPACK_CONFIG_FILE);
+
+    return fs.existsSync(webpackFile) ?
+      webpackMerge(webpackConfig, require(webpackFile)) :
+      webpackConfig;
+  }, {});
 }
 
 function getMicroservices() {
