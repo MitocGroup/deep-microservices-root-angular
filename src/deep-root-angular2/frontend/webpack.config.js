@@ -13,7 +13,7 @@ module.exports = {
   resolve: {
     root: helpers.root(),
     modulesDirectories: [
-      "node_modules",
+      'node_modules',
       helpers.root('node_modules'),
     ].concat(helpers.getMicroservices().map(ms => path.join(ms, 'frontend', 'node_modules'))),
     extensions: ['', '.js', '.ts'],

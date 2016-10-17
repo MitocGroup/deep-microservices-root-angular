@@ -44,10 +44,11 @@ function watchMicroservice(frontendPath) {
     exec(
       `cd ${frontendPath} && webpack --config webpack.config.js --progress --profile --watch`,
       (error, stdout, stderr) => {
-      if (error) {
-        console.error(stderr);
+        if (error) {
+          console.error(stderr);
+        }
       }
-    });
+    );
 
     resolve();
   });
