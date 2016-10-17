@@ -17,7 +17,7 @@ module.exports = webpackMerge(helpers.webpackDepsConfig(), {
       helpers.root('node_modules'),].concat(
       helpers.getMicroservices().map(ms => path.join(ms, 'frontend', 'node_modules'))
     ),
-    extensions: ['', '.js', 'es6', '.ts'],
+    extensions: ['', '.js', 'es6', '.ts', 'json'],
   },
 
   get resolveLoader() {
