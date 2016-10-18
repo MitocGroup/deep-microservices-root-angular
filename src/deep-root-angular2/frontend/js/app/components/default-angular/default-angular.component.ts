@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-@Component({
-  moduleId: module.id,
+@Component({  
   template : '',
 })
 export class DefaultRootAngular {

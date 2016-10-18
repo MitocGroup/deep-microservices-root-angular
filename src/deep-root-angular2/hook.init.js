@@ -47,7 +47,7 @@ module.exports = function(callback) {
   installationPromise.then(() => {
     return utils.installNodeModules(directory, false);
   }).then(() => {
-    return utils.initializeApplication(directory)
+    return utils.initializeApplication.call(this, directory);
   }).then(callback).catch((error) => {
     console.error(error);
     callback();

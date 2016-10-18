@@ -24,13 +24,6 @@
         }
     </style>
 
-    <!-- 1. Load libraries -->
-     <!-- Polyfill(s) for older browsers -->
-    <script src="node_modules/core-js/client/shim.min.js"></script>
-    <script src="node_modules/zone.js/dist/zone.js"></script>
-    <script src="node_modules/reflect-metadata/Reflect.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
-
     <deep-favicon/>
     <deep-version/>
     <deep-deploy-id/>
@@ -38,7 +31,6 @@
   </head>
   <!-- 3. Display the application -->
   <body>
-
 
     <root-angular-app>
       <div id="init-loader">
@@ -48,10 +40,10 @@
       </div>
     </root-angular-app>
 
-
     <script src="js/lib/deep-framework.js"></script>
-    <script>
-      System.import('./bootstrap.js').catch(function(err){ console.error(err); });
-    </script>
+    <script type="text/javascript" src="js/polyfills.js"></script>
+    <script type="text/javascript" src="js/vendor.js"></script>
+    <script type="text/javascript" src="bootstrap.js"></script>
+
   </body>
 </html>

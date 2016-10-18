@@ -12,9 +12,9 @@ if (DeepFramework.Kernel.isLocalhost) {
 }
 
 @NgModule({
-  declarations: [RootAngular, DefaultRootAngular],
-  imports: imports,
-  bootstrap: [RootAngular],
-  providers: providers,
+    declarations: [RootAngular, DefaultRootAngular],
+    imports: imports,
+    bootstrap: [RootAngular],
+    providers: providers,
 })
-export class RootAngularModule {}
+export class AppModule {}
