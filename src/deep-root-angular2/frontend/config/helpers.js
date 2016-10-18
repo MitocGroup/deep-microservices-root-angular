@@ -4,11 +4,13 @@
 
 const path = require('path');
 const fs = require('fs');
-const _root = path.resolve(__dirname, '..');
 const webpackMerge = require('webpack-merge');
+const _root = path.resolve(__dirname, '..');
+
 const ROOT_ANGULAR2_IDENTIFIER = 'deep-root-angular2';
 const DEEPKG_FILE = 'deepkg.json';
 const WEBPACK_CONFIG_FILE = 'webpack.config.js';
+const DEFAULT_FRONTEND_PATH = 'frontend';
 
 function root(args) {
   args = Array.prototype.slice.call(arguments, 0);
@@ -45,7 +47,7 @@ function webpackDepsConfig() {
   return paths.reduce((webpackConfig, msPath) => {
     let deepkgFile = path.join(msPath, DEEPKG_FILE);
     let deepkgObj = require(deepkgFile);
-    let frontendPath = (deepkgObj.autoload || {}).frontend || 'frontend';
+    let frontendPath = (deepkgObj.autoload || {}).frontend || DEFAULT_FRONTEND_PATH;
     let webpackFile = path.join(msPath, frontendPath, WEBPACK_CONFIG_FILE);
 
     return fs.existsSync(webpackFile) ?
