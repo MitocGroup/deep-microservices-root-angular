@@ -12,10 +12,6 @@ declare var DeepFramework: {
       microservices: any
     },
   },
-  accountStyles: any,
 };
 
 declare var System : any;
-declare interface NodeRequire {
-  ensure: any;
-}
