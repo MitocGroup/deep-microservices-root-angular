@@ -13,11 +13,10 @@ var webpackConfig = webpackMerge(helpers.webpackDepsConfig(), {
 
   resolve: {
     modules: [
-      'node_modules',
       helpers.root('node_modules'),].concat(
       helpers.getMicroservices().map(ms => path.join(ms, 'frontend', 'node_modules'))
     ),
-    extensions: ['', '.js', '.es6', '.ts', '.json'],
+    extensions: ['.js', '.es6', '.ts', '.json'],
   },
 
   get resolveLoader() {
