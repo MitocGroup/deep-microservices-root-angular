@@ -74,13 +74,13 @@ function initializeApplication(frontendPath) {
           rootJsPath,
           bootstrapFile
         );
-        
+
         bootstrapFiles.push(relativePath);
       }
     }
   });
 
-  let msJsTemplate = bootstrapFiles.map(file => `export * from "${file}"; ${os.EOL}`);
+  let msJsTemplate = bootstrapFiles.map(file => `export * from "${file}";`).join(os.EOL);
 
   fs.writeFileSync(path.join(rootJsPath, 'microservices.ts'), msJsTemplate);
 
