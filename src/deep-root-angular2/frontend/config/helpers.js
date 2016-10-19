@@ -11,6 +11,7 @@ const ROOT_ANGULAR2_IDENTIFIER = 'deep-root-angular2';
 const DEEPKG_FILE = 'deepkg.json';
 const WEBPACK_CONFIG_FILE = 'webpack.config.js';
 const DEFAULT_FRONTEND_PATH = 'frontend';
+const DEEPLOY_FILE = 'deeploy.json';
 
 function root(args) {
   args = Array.prototype.slice.call(arguments, 0);
@@ -56,12 +57,17 @@ function webpackDepsConfig() {
   }, {});
 }
 
+function deeployConfig() {
+  return require(path.join(__dirname, '..', '..', '..', DEEPLOY_FILE))
+}
+
 function getMicroservices() {
   let paths = getMicroservicesPaths();
 
   return paths.map(p => path.basename(p));
 }
 
+exports.deeployConfig = deeployConfig;
 exports.webpackDepsConfig = webpackDepsConfig;
 exports.getMicroservices = getMicroservices;
 exports.root = root;
