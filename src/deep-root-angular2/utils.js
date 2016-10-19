@@ -42,7 +42,8 @@ function installNodeModules(fullPath, prodFlag) {
 function watchMicroservice(frontendPath) {
   return new Promise((resolve) => {
     exec(
-      `cd ${frontendPath} && webpack --config webpack.config.js --progress --profile --watch`,
+      `cd ${frontendPath} && webpack --config webpack.config.js --watch`,
+      {maxBuffer: 1024 * 1024},
       (error, stdout, stderr) => {
         if (error) {
           console.error(stderr);
@@ -84,7 +85,7 @@ function initializeApplication(frontendPath) {
   fs.writeFileSync(path.join(rootJsPath, 'microservices.ts'), msJsTemplate);
 
   return new Promise((resolve) => {
-    exec(`cd ${frontendPath} && webpack --config webpack.config.js --progress --profile`, (error, stdout, stderr) => {
+    exec(`cd ${frontendPath} && webpack --config webpack.config.js`, (error, stdout, stderr) => {
       if (error) {
         console.error('Error during compiling: ',stderr);
       }

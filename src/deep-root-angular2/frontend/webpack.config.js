@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var path = require('path');
 var helpers = require('./config/helpers');
 
-module.exports = webpackMerge(helpers.webpackDepsConfig(), {
+var webpackConfig = webpackMerge(helpers.webpackDepsConfig(), {
   context: helpers.root('..', '..'),
   entry: {
     'bootstrap': helpers.root('bootstrap.ts'),
@@ -12,8 +12,8 @@ module.exports = webpackMerge(helpers.webpackDepsConfig(), {
   },
 
   resolve: {
-    root: helpers.root(),
-    modulesDirectories: [
+    modules: [
+      'node_modules',
       helpers.root('node_modules'),].concat(
       helpers.getMicroservices().map(ms => path.join(ms, 'frontend', 'node_modules'))
     ),
@@ -40,7 +40,10 @@ module.exports = webpackMerge(helpers.webpackDepsConfig(), {
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        loader: 'file?name=assets/[name].[hash].[ext]'
+        loader: 'file',
+        query: {
+          name: 'assets/[name].[hash].[ext]'
+        }
       },
       {
         test: /\.css$/,
@@ -70,3 +73,9 @@ module.exports = webpackMerge(helpers.webpackDepsConfig(), {
     chunkFilename: '[id].chunk.js'
   },
 });
+
+if (['dev', 'stage'].indexOf(helpers.deeployConfig().env) !== -1) {
+  webpackConfig.devtool = 'cheap-module-source-map';
+}
+
+module.exports = webpackConfig;
