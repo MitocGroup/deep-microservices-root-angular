@@ -1,6 +1,5 @@
 'use strict';
 
-var utils = require('./utils');
 var exec = require('child_process').exec;
 
 function installGlobalDependencies() {
