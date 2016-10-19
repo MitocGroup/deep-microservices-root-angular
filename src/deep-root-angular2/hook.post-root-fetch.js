@@ -28,10 +28,7 @@ function installGlobalDependencies() {
 }
 
 module.exports = function(callback) {
-  Promise.all([
-    utils.installNodeModules(__dirname, false),
-    installGlobalDependencies()
-  ]).then(callback).catch((error) => {
+  installGlobalDependencies().then(callback).catch((error) => {
     console.error(error);
 
     callback();
