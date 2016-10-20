@@ -42,10 +42,10 @@ module.exports = function(callback) {
     });
   });
 
-  let directory = this.microservice.autoload._frontend.replace(/(\/_build)$/, '');
+  let directory = this.microservice.autoload.frontend.replace(/(\/_build)$/, '');
 
   installationPromise.then(() => {
-    return utils.installNodeModules(directory, false);
+    return utils.installNodeModules.call(this);
   }).then(() => {
     return utils.initializeApplication.call(this, directory);
   }).then(callback).catch((error) => {
