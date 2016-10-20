@@ -32,7 +32,9 @@ function installNodeModules(env) {
 
     return new Promise(resolve => {
       exec(`cd ${frontendPath} && npm install ${envArg}`, (error, stdout, stderr) => {
-        error && console.error(stderr);
+        if (error) {
+          console.error(stderr);
+        }
 
         resolve();
       });
