@@ -9,28 +9,35 @@ let path = require('path');
 let fs = require('fs');
 let os = require('os');
 
-/**
- * @param {String} fullPath - relative path to package.json folder from microapplication
- * @param {Boolean} prodFlag
- */
-function installNodeModules(fullPath, prodFlag) {
-  let flag = prodFlag ? '--production' : '';
+let PACKAGE_JSON_FILE = 'package.json';
+let NODE_MODULES_DIR = 'node_modules';
 
-  return new Promise(resolve => {
-    try {
-      if (fs.statSync(path.join(fullPath, 'node_modules')).isDirectory()) {
-        return resolve();
-      }
-    } catch(error) {
-      console.log('Installing node modules');
+/**
+ * @param {String|undefined} env
+ */
+function installNodeModules(env) {
+  let envArg = env ? `--${env}` : '';
+  let microservices = this.microservice.property.microservices;
+
+  return microservices.map(microservice => {
+    let frontendPath = microservice.autoload.frontend;
+    let packageFile = path.join(frontendPath, PACKAGE_JSON_FILE);
+    let nodeModulesDir = path.join(frontendPath, NODE_MODULES_DIR);
+
+    if (!fs.existsSync(packageFile) || fs.existsSync(nodeModulesDir)) {
+      return Promise.resolve(null);
     }
 
-    exec(`cd ${fullPath} && npm install ${flag}`, (error, stdout, stderr) => {
-      if (error) {
-        console.error(stderr);
-      }
+    console.log(`Installing node_modules for "${microservice.identifier}"`);
 
-      return resolve();
+    return new Promise(resolve => {
+      exec(`cd ${frontendPath} && npm install ${envArg}`, (error, stdout, stderr) => {
+        if (error) {
+          console.error(stderr);
+        }
+
+        resolve();
+      });
     });
   });
 }
@@ -74,13 +81,13 @@ function initializeApplication(frontendPath) {
           rootJsPath,
           bootstrapFile
         );
-        
+
         bootstrapFiles.push(relativePath);
       }
     }
   });
 
-  let msJsTemplate = bootstrapFiles.map(file => `export * from "${file}"; ${os.EOL}`);
+  let msJsTemplate = bootstrapFiles.map(file => `export * from "${file}";`).join(os.EOL);
 
   fs.writeFileSync(path.join(rootJsPath, 'microservices.ts'), msJsTemplate);
 
