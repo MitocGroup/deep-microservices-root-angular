@@ -44,7 +44,7 @@ module.exports = function(callback) {
 
   let directory = this.microservice.autoload.frontend.replace(/(\/_build)$/, '');
 
-  utils.initializeApplication.call(this, directory)
+  installationPromise.then(() => utils.initializeApplication.call(this, directory))
     .then(callback)
     .catch((error) => {
       console.error(error);
