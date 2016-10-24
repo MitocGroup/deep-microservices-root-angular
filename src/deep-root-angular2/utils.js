@@ -19,7 +19,7 @@ function installNodeModules(env) {
   let envArg = env ? `--${env}` : '';
   let microservices = this.microservice.property.microservices;
 
-  return microservices.map(microservice => {
+  return Promise.all(microservices.map(microservice => {
     let frontendPath = microservice.autoload.frontend;
     let packageFile = path.join(frontendPath, PACKAGE_JSON_FILE);
     let nodeModulesDir = path.join(frontendPath, NODE_MODULES_DIR);
@@ -39,7 +39,7 @@ function installNodeModules(env) {
         resolve();
       });
     });
-  });
+  }));
 }
 
 /**
