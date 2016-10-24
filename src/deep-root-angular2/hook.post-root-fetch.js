@@ -1,6 +1,7 @@
 'use strict';
 
 var exec = require('child_process').exec;
+var utils = require('./utils');
 
 function installGlobalDependencies() {
   return new Promise((resolve) => {
@@ -27,9 +28,11 @@ function installGlobalDependencies() {
 }
 
 module.exports = function(callback) {
-  installGlobalDependencies().then(callback).catch((error) => {
-    console.error(error);
+  installGlobalDependencies().then(() => utils.installNodeModules.call(this))
+    .then(callback)
+    .catch((error) => {
+      console.error(error);
 
-    callback();
-  });
+      callback();
+    });
 };
