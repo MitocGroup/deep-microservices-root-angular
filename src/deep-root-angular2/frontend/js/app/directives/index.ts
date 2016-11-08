@@ -1,0 +1,1 @@
+export { DeepRouterLinkDirective } from './deep-router-link.directive';
