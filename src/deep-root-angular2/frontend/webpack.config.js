@@ -46,7 +46,7 @@ var webpackConfig = webpackMerge(helpers.webpackDepsConfig(), {
       },
       {
         test: /\.css$/,
-        loader: 'raw'
+        loader: 'raw-loader'
       },
       {
         test: /\.es6$/,
