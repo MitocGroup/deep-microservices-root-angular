@@ -1,13 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 import { RootAngular, DefaultRootAngular, routing } from './index';
 import { DeepRouterService } from './services/deep-router.service';
+import { DeepNotifierService } from './services/deep-notifier.service';
 
-const imports = [BrowserModule, routing].concat(DeepFramework.angularDependencies);
+const imports = [
+  BrowserModule,
+  SimpleNotificationsModule,
+  routing
+].concat(DeepFramework.angularDependencies);
 
 let providers = [
-  DeepRouterService
+  DeepRouterService,
+  DeepNotifierService
 ];
 
 if (DeepFramework.Kernel.isLocalhost) {
