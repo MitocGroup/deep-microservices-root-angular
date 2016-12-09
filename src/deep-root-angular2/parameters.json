@@ -12,7 +12,7 @@
       "displayName": "Favicon",
       "type": "string",
       "required": false,
-      "pattern": "^@[^:]+:(?:\\/?[\\w\\-\\d]+)+\\.(ico)$",
+      "pattern": "^@[^:]+:(?:\\/?[\\w\\-\\d]+)+\\.(ico|png)$",
       "default": "@deep-root-angular2:img/favicon.ico",
       "example": "@deep-root-angular2:img/favicon.ico"
     },

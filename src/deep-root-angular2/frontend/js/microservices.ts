@@ -1,1 +1,1 @@
-export * from "../../../deep-account/frontend/bootstrap.ts"; 
+export * from "../../../deep-account/frontend/bootstrap";
