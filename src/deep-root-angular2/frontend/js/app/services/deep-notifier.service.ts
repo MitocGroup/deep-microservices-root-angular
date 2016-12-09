@@ -17,8 +17,8 @@ export class DeepNotifierService {
    * @param {String} message
    * @param {*} options
    */
-  info(title, message, options = null) {
-    this.notifier.info(title, message, options);
+  success(title, message, options = null) {
+    this.notifier.success(title, message, options);
   }
 
   /**
@@ -28,5 +28,23 @@ export class DeepNotifierService {
    */
   error(title, message, options = null) {
     this.notifier.error(title, message, options);
+  }
+
+  /**
+   * @param {String} title
+   * @param {String} message
+   * @param {*} options
+   */
+  alert(title, message, options = null) {
+    this.notifier.error(title, message, options);
+  }
+
+  /**
+   * @param {String} title
+   * @param {String} message
+   * @param {*} options
+   */
+  info(title, message, options = null) {
+    this.notifier.info(title, message, options);
   }
 }
