@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
+  selector: 'deep-notifications',
   template : '<simple-notifications [options]="options"></simple-notifications>',
 })
 export class DeepNotificationsComponent {
