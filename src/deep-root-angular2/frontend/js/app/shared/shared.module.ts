@@ -1,12 +1,19 @@
 import { NgModule } from '@angular/core';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 import { DeepRouterLinkDirective } from '../directives/deep-router-link.directive';
+import { DeepNotificationsComponent } from '../components/deep-notifications/deep-notifications.component';
 
 @NgModule({
-  declarations: [
-    DeepRouterLinkDirective
+  imports: [
+    SimpleNotificationsModule
   ],
   exports: [
-    DeepRouterLinkDirective
+    DeepRouterLinkDirective,
+    DeepNotificationsComponent
+  ],
+  declarations: [
+    DeepRouterLinkDirective,
+    DeepNotificationsComponent
   ]
 })
 export class RootSharedModule {}
