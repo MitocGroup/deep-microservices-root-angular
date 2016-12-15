@@ -24,7 +24,10 @@ export class DeepRouterService {
     }
 
     return this.router.navigate(
-      [DeepRouterService.getRoutePrefix(msIdentifier)].concat(commands),
+      [
+        DeepRouterService.getAppBasePath(),
+        DeepRouterService.getRoutePrefix(msIdentifier)
+      ].concat(commands),
       extras
     );
   }
@@ -44,6 +47,13 @@ export class DeepRouterService {
    */
   static getRoutePrefix(msIdentifier: string): string {
     return DeepFramework.Kernel.config.microservices[msIdentifier].parameters.moduleRoutePrefix;
+  }
+
+  /**
+   * @returns {String}
+   */
+  static getAppBasePath(): string {
+    return DeepFramework.Kernel.config.globals.basePath || '/';
   }
 
   /**
