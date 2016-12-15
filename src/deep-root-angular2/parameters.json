@@ -1,5 +1,5 @@
 {
-  "frontend" : {},
+  "frontend": {},
   "backend" : {},
   "globals": {
     "version": {
@@ -15,6 +15,13 @@
       "pattern": "^@[^:]+:(?:\\/?[\\w\\-\\d]+)+\\.(ico|png)$",
       "default": "@deep-root-angular2:img/favicon.ico",
       "example": "@deep-root-angular2:img/favicon.ico"
+    },
+    "basePath": {
+      "displayName": "Application base path",
+      "type": "string",
+      "required": true,
+      "example": "/",
+      "default": "/"
     },
     "pageLoader|src": {
       "displayName": "Page loader source",
