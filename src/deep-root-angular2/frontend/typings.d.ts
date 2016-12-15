@@ -9,7 +9,8 @@ declare var DeepFramework: {
     get(service: string): any,
     config: {
       identityProviders: Object,
-      microservices: any
+      microservices: any,
+      globals: any,
     },
   },
 };
