@@ -51,12 +51,6 @@
       "pattern": "^https?://[^:]+(:[^@]+)?@app\\.getsentry\\.com/[0-9]+$",
       "example": "https://72kshdbrgkebghkrb34iu5yb3ub:23l5hbk2v2jhg52uygvygvhmgv@app.getsentry.com/45747"
     },
-    "userPool|enabled": {
-      "displayName": "Enable Cognito User Pool Identity Provider?",
-      "type": "boolean",
-      "required": false,
-      "example": false
-    },
     "serviceWorker|cache|enabled": {
       "displayName": "Enable Service Worker html caching?",
       "type": "boolean",
@@ -98,36 +92,6 @@
       "type": "boolean",
       "required": false,
       "example": false
-    },
-    "security|userPool|triggers|PreSignUp": {
-      "displayName": "User pool trigger on pre-sign-up",
-      "type": "string",
-      "required": false,
-      "example": "@deep-microapp:user:pre-sign-up"
-    },
-    "security|userPool|triggers|PostConfirmation": {
-      "displayName": "User pool trigger on post-confirmation",
-      "type": "string",
-      "required": false,
-      "example": "@deep-microapp:user:post-confirmation"
-    },
-    "security|userPool|triggers|PreAuthentication": {
-      "displayName": "User pool trigger on pre-authentication",
-      "type": "string",
-      "required": false,
-      "example": "@deep-microapp:user:pre-authentication"
-    },
-    "security|userPool|triggers|PostAuthentication": {
-      "displayName": "User pool trigger on post-authentication",
-      "type": "string",
-      "required": false,
-      "example": "@deep-microapp:user:post-authentication"
-    },
-    "security|userPool|triggers|CustomMessage": {
-      "displayName": "User pool trigger on custom-message",
-      "type": "string",
-      "required": false,
-      "example": "@deep-microapp:user:custom-message"
     }
   }
 }
