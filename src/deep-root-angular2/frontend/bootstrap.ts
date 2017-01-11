@@ -12,7 +12,9 @@ deepKernel.bootstrap(() => {
         angularCore.enableProdMode();
       }
 
-      platformBrowserDynamic.platformBrowserDynamic().bootstrapModule(angularModule.AppModule);
+      deepKernel.get('security').anonymousLogin(() => {
+        platformBrowserDynamic.platformBrowserDynamic().bootstrapModule(angularModule.AppModule);
+      });
     });
   });
 });
