@@ -13,10 +13,11 @@ var webpackConfig = webpackMerge(helpers.webpackDepsConfig(), {
 
   resolve: {
     modules: [
-      helpers.root('node_modules'),].concat(
-      helpers.getMicroservices().map(ms => path.join(ms, 'frontend', 'node_modules'))
-    ),
-    extensions: ['.js', '.es6', '.ts', '.json'],
+      helpers.root('node_modules'),
+    ].concat(
+        helpers.getMicroservices().map(ms => path.join(ms, 'frontend', 'node_modules'))
+  ),
+    extensions: ['.js', '.es6', '.ts', '.json', '.css'],
   },
 
   get resolveLoader() {
@@ -24,14 +25,13 @@ var webpackConfig = webpackMerge(helpers.webpackDepsConfig(), {
   },
 
   module: {
-    loaders: [
-      {
-        test: /\.ts$/,
-        loaders: [
-          'awesome-typescript-loader',
-          'angular2-template-loader',
-        ]
-      },
+    loaders: [{
+      test: /\.ts$/,
+      loaders: [
+        'awesome-typescript-loader',
+        'angular2-template-loader',
+      ]
+    },
       {
         test: /\.html$/,
         loader: 'raw-loader',
@@ -46,7 +46,12 @@ var webpackConfig = webpackMerge(helpers.webpackDepsConfig(), {
       },
       {
         test: /\.css$/,
-        loader: 'raw-loader'
+        loader: 'raw-loader',
+        exclude: /@angular\/material\/core\/theming\/.+/i,
+      },
+      {
+        test: /@angular\/material\/core\/theming\/.+\.css$/i,
+        loaders: ['style-loader', 'css-loader'],
       },
       {
         test: /\.es6$/,
@@ -57,7 +62,7 @@ var webpackConfig = webpackMerge(helpers.webpackDepsConfig(), {
         test: /\.json$/,
         loader: 'json',
       },
-    ],
+  ],
   },
 
   plugins: [
