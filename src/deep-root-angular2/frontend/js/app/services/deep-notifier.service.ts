@@ -7,10 +7,16 @@ import { NotificationsService } from 'angular2-notifications';
 
 @Injectable()
 export class DeepNotifierService {
+  private deepLogger : any = null;
+
   /**
    * @param {NotificationsService} notifier
    */
-  constructor(private notifier: NotificationsService) {}
+  constructor(private notifier: NotificationsService) {
+    this.deepLogger = DeepFramework.Kernel.has('log') ?
+      DeepFramework.Kernel.get('log') :
+      null;
+  }
 
   /**
    * @param {String} title
@@ -28,6 +34,10 @@ export class DeepNotifierService {
    */
   error(title, message, options = null) {
     this.notifier.error(title, message, options);
+
+    if (this.deepLogger) {
+      this.deepLogger.err(`${title}. ${message}`);
+    }
   }
 
   /**
@@ -37,6 +47,10 @@ export class DeepNotifierService {
    */
   alert(title, message, options = null) {
     this.notifier.error(title, message, options);
+
+    if (this.deepLogger) {
+      this.deepLogger.err(`${title}. ${message}`);
+    }
   }
 
   /**
