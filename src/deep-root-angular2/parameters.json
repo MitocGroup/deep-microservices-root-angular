@@ -99,6 +99,34 @@
       "type": "boolean",
       "required": false,
       "example": false
+    },
+    "api|authorizer|authorizerUri": {
+      "displayName": "Authorizer Uniform Resource Identifier. For TOKEN type deep resource should be specified.",
+      "type": "string",
+      "required": false,
+      "example": "@deep-account:authorizer:authorize",
+      "default": "@deep-account:authorizer:authorize"
+    },
+    "api|authorizer|type": {
+      "displayName": "Authorizer type (TOKEN | COGNITO_USER_POOLS)",
+      "type": "string",
+      "required": false,
+      "example": "TOKEN",
+      "default": "TOKEN"
+    },
+    "api|authorizer|identitySource": {
+      "displayName": "The source of the identity in an incoming request",
+      "type": "string",
+      "required": false,
+      "example": "method.request.header.[headerName]",
+      "default": "method.request.header['x-api-key']"
+    },
+    "api|authorizer|authorizerResultTtlInSeconds": {
+      "displayName": "The TTL of cached authorizer results",
+      "type": "number",
+      "required": false,
+      "example": 300,
+      "default": 300
     }
   }
 }
