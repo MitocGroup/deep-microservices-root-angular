@@ -7,6 +7,7 @@ declare var DeepFramework: {
     bootstrap(cb: Function),
     env: string,
     get(service: string): any,
+    has(service: string): boolean,
     config: {
       identityProviders: Object,
       microservices: any,
