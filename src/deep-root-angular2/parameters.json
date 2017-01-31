@@ -118,8 +118,8 @@
       "displayName": "The source of the identity in an incoming request",
       "type": "string",
       "required": false,
-      "example": "method.request.header.[headerName]",
-      "default": "method.request.header['x-api-key']"
+      "example": "method.request.header.<headerName>",
+      "default": "method.request.header.x-api-key"
     },
     "api|authorizer|authorizerResultTtlInSeconds": {
       "displayName": "The TTL of cached authorizer results",
