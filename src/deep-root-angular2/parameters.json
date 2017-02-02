@@ -123,6 +123,37 @@
       "type": "number",
       "required": false,
       "example": 300
+    },
+    "api|plan|quota|limit": {
+      "displayName": "The maximum number of requests that can be made in a given time period.",
+      "type": "number",
+      "required": false,
+      "example": 10000
+    },
+    "api|plan|quota|offset": {
+      "displayName": "The number of requests subtracted from the given limit in the initial time period.",
+      "type": "number",
+      "required": false,
+      "example": 0
+    },
+    "api|plan|quota|period": {
+      "displayName": "The time period in which the limit applies. Valid values are 'DAY | WEEK | MONTH'.",
+      "type": "string",
+      "pattern": "^(DAY|WEEK|MONTH)$",
+      "required": false,
+      "example": "DAY"
+    },
+    "api|plan|throttle|burstLimit": {
+      "displayName": "The API request burst limit, the maximum rate limit over a time ranging from one to a few seconds.",
+      "type": "number",
+      "required": false,
+      "example": 200
+    },
+    "api|plan|throttle|rateLimit": {
+      "displayName": "The API request steady-state rate limit.",
+      "type": "number",
+      "required": false,
+      "example": 100
     }
   }
 }
