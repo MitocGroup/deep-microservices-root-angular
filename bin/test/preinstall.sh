@@ -29,6 +29,7 @@ source $(dirname $0)/_head.sh
 (npm list -g karma-phantomjs-launcher --depth=0 || npm install -g karma-phantomjs-launcher@0.2.x) &&\
 (npm list -g karma-ng-html2js-preprocessor --depth=0 || npm install -g karma-ng-html2js-preprocessor@0.2.x) &&\
 (npm list -g codeclimate-test-reporter --depth=0 || npm install -g codeclimate-test-reporter) &&\
+(npm list -g typings --depth=0 || npm install -g typings) &&\
 
 ###################################################
 ### Install dependencies locally if don't exist ###
