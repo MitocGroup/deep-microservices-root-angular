@@ -3,32 +3,52 @@
 var exec = require('child_process').exec;
 var utils = require('./utils');
 
-function installGlobalDependencies() {
-  return new Promise((resolve) => {
-    exec('which tsc', (error, stdout, stderr) => {
-      if (stdout) {
-        return resolve();
-      }
+function installGlobalDependencies(globalDeps) {
+  var promises = [];
 
-      if (stderr) {
-        console.error(stderr);
-        return resolve();
-      }
+  for (let depKey in globalDeps) {
+    if (!globalDeps.hasOwnProperty(depKey)) {
+      continue;
+    }
 
-      console.log('Installing typescript');
-      exec('npm install -g typings typescript', (error) => {
-        if (error) {
-          console.error(error);
+    let dep = globalDeps[depKey];
+
+    let promise = new Promise((resolve) => {
+      exec(`which ${depKey}`, (error, stdout, stderr) => {
+        if (stdout) {
+          return resolve();
         }
 
-        return resolve();
-      })
+        if (stderr) {
+          console.error(`Error checking for ${dep} dependency globally. ${stderr}`);
+          return resolve();
+        }
+
+        console.log(`Installing ${dep} globally.`);
+
+        exec(`npm install -g ${dep}`, (error) => {
+          if (error) {
+            console.error(`Error installing ${dep} dependency globally. ${error}`);
+          }
+
+          return resolve();
+        })
+      });
     });
-  });
+
+    promises.push(promise);
+  }
+
+  return Promise.all(promises);
 }
 
 module.exports = function(callback) {
-  installGlobalDependencies().then(() => utils.installNodeModules.call(this))
+  var deps = {
+    'tsc': 'typescript',
+    'typings': 'typings'
+  };
+
+  installGlobalDependencies(deps).then(() => utils.installNodeModules.call(this))
     .then(callback)
     .catch((error) => {
       console.error(error);
