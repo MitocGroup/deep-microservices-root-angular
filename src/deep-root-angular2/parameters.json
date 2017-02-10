@@ -55,7 +55,7 @@
       "displayName": "Sentry DSN",
       "type": "string",
       "required": false,
-      "pattern": "^https?://[^:]+(:[^@]+)?@app\\.getsentry\\.com/[0-9]+$",
+      "pattern": "^https?:\\/\\/[^:]+(:[^@]+)?@(app\\.getsentry\\.com|sentry\\.io)\\/[0-9]+$",
       "example": "https://72kshdbrgkebghkrb34iu5yb3ub:23l5hbk2v2jhg52uygvygvhmgv@app.getsentry.com/45747"
     },
     "serviceWorker|cache|enabled": {
