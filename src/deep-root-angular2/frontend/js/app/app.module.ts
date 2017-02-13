@@ -8,7 +8,7 @@ import { DeepNotifierService } from './services/deep-notifier.service';
 
 const imports = [
   BrowserModule,
-  SimpleNotificationsModule,
+  SimpleNotificationsModule.forRoot(),
   routing
 ].concat(DeepFramework.angularDependencies);
 
