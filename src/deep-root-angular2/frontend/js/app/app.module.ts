@@ -4,6 +4,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { RootAngular, DefaultRootAngular, routing } from './index';
 import { DeepRouterService } from './services/deep-router.service';
+import { DeepEventService } from './services/deep-event.service';
 import { DeepNotifierService } from './services/deep-notifier.service';
 
 const imports = [
@@ -14,7 +15,8 @@ const imports = [
 
 let providers = [
   DeepRouterService,
-  DeepNotifierService
+  DeepNotifierService,
+  DeepEventService,
 ];
 
 if (DeepFramework.Kernel.isLocalhost) {
