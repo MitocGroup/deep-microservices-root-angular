@@ -29,7 +29,7 @@ export class DeepEventService implements LoggerInterface {
    * @returns {Promise<T>}
    */
   log(event : Event) : Promise<any> {
-    { name, data, context } = event.toObject();
+    let { name, data, context } = event.toObject();
     
     return this._log(name, data, context);
   }

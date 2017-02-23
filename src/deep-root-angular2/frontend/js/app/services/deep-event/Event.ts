@@ -14,10 +14,10 @@ export class Event {
    * @param {*} data
    * @param {*} context
    */
-  constructor(name: string, data?: any = {}, context?: any = {}) {
+  constructor(name: string, data: any = {}, context: any = {}) {
     this._name = name;
     this._data = data;
-    this._context = context;s
+    this._context = context;
   }
   
   /**
@@ -37,7 +37,7 @@ export class Event {
    * @returns {*}
    */
   toObject() : any {
-    { name, data, context } = this;
+    let { name, data, context } = this;
     
     return { name, data, context };
   }
