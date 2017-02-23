@@ -62,7 +62,11 @@ var webpackConfig = webpackMerge(helpers.webpackDepsConfig(), {
         test: /\.json$/,
         loader: 'json',
       },
-  ],
+    ],
+  },
+  
+  externals: {
+    setimmediate: 'window.setImmediate',
   },
 
   plugins: [

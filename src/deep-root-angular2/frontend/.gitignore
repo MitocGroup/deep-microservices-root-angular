@@ -1,0 +1,8 @@
+*.chunk.js
+*.chunk.js.map
+bootstrap.js
+bootstrap.js.map
+js/polyfills.js
+js/polyfills.js.map
+js/vendor.js
+js/vendor.js.map
