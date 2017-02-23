@@ -58,7 +58,13 @@ function webpackDepsConfig() {
 }
 
 function deeployConfig() {
-  return require(path.join(__dirname, '..', '..', '..', DEEPLOY_FILE))
+  try {
+    return require(path.join(__dirname, '..', '..', '..', DEEPLOY_FILE))
+  } catch (e) {
+    console.warn('Returning a fake deeploy.json config object.', e);
+  }
+  
+  return { env: 'dev' };
 }
 
 function getMicroservices() {

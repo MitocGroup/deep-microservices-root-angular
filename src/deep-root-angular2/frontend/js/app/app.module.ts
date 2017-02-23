@@ -13,7 +13,7 @@ const imports = [
   routing
 ].concat(DeepFramework.angularDependencies);
 
-let providers = [
+let providers : Array<any> = [
   DeepRouterService,
   DeepNotifierService,
   DeepEventService,
