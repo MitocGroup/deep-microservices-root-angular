@@ -4,3 +4,4 @@
 
 export { DeepRouterService } from './deep-router.service';
 export { DeepNotifierService } from './deep-notifier.service';
+export { DeepEventService } from './deep-event.service';
