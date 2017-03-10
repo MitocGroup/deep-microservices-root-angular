@@ -65,10 +65,6 @@ var webpackConfig = webpackMerge(helpers.webpackDepsConfig(), {
     ],
   },
   
-  externals: {
-    setimmediate: 'window.setImmediate',
-  },
-
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       name: ['js/vendor', 'js/polyfills'],

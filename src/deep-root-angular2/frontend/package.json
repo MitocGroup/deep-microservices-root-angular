@@ -20,7 +20,8 @@
     "rxjs": "^5.0.0-beta.12",
     "zone.js": "^0.7.2",
     "ts-helpers": "1.1.1",
-    "angular2-notifications": "^0.4.46"
+    "angular2-notifications": "^0.4.46",
+    "setimmediate": "^1.0.5"
   },
   "devDependencies": {
     "angular2-template-loader": "^0.4.0",
