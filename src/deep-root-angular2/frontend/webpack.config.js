@@ -66,7 +66,7 @@ var webpackConfig = webpackMerge(helpers.webpackDepsConfig(), {
   },
   
   externals: {
-    setimmediate: 'window.setImmediate',
+    setImmediate: 'window.setImmediate',
   },
 
   plugins: [
