@@ -51,6 +51,13 @@
       "required": false,
       "example": false
     },
+    "search|es|version": {
+      "displayName": "ElasticSearch cluster version (1.5, 2.3, 5.1)",
+      "type": "string",
+      "required": false,
+      "pattern": "^(5\\.1|2\\.3|1\\.5)$",
+      "example": "2.3"
+    },
     "logDrivers|sentry|dsn": {
       "displayName": "Sentry DSN",
       "type": "string",
