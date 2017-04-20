@@ -161,6 +161,12 @@
       "type": "number",
       "required": false,
       "example": 100
+    },
+    "xRay|enabled": {
+      "displayName": "Enable X-Ray?",
+      "type": "boolean",
+      "required": false,
+      "example": false
     }
   }
 }
