@@ -7,7 +7,7 @@ const fs = require('fs');
 const webpackMerge = require('webpack-merge');
 const _root = path.resolve(__dirname, '..');
 
-const ROOT_ANGULAR2_IDENTIFIER = 'deep-root-angular2';
+const ROOT_ANGULAR_IDENTIFIER = 'deep-root-angular';
 const DEEPKG_FILE = 'deepkg.json';
 const WEBPACK_CONFIG_FILE = 'webpack.config.js';
 const DEFAULT_FRONTEND_PATH = 'frontend';
@@ -33,7 +33,7 @@ function getMicroservicesPaths() {
 
     if (fs.statSync(fullPath).isDirectory() &&
       fs.existsSync(path.join(fullPath, DEEPKG_FILE)) &&
-      file !== ROOT_ANGULAR2_IDENTIFIER) {
+      file !== ROOT_ANGULAR_IDENTIFIER) {
 
       paths.push(fullPath);
     }

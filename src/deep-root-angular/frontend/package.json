@@ -1,5 +1,5 @@
 {
-  "name": "deep-root-angular2",
+  "name": "deep-root-angular",
   "version": "1.0.0",
   "scripts": {
     "postinstall": "typings install",

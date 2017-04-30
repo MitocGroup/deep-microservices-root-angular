@@ -13,8 +13,8 @@
       "type": "string",
       "required": false,
       "pattern": "^@[^:]+:(?:\\/?[\\w\\-\\d]+)+\\.(ico|png)$",
-      "default": "@deep-root-angular2:img/favicon.ico",
-      "example": "@deep-root-angular2:img/favicon.ico"
+      "default": "@deep-root-angular:img/favicon.ico",
+      "example": "@deep-root-angular:img/favicon.ico"
     },
     "basePath": {
       "displayName": "Application base path",
@@ -28,8 +28,8 @@
       "type": "string",
       "required": false,
       "pattern": "^@[^:]+:(?:\\/?[\\w\\-\\d]+)+\\.(png|jpg|gif)$",
-      "default": "@deep-root-angular2:img/loader.gif",
-      "example": "@deep-root-angular2:img/loader.gif"
+      "default": "@deep-root-angular:img/loader.gif",
+      "example": "@deep-root-angular:img/loader.gif"
     },
     "pageLoader|alt": {
       "displayName": "Page loader alternate text",
