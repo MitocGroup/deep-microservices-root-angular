@@ -15,7 +15,7 @@
   ],
   "files": [
     "../bootstrap.ts",
-    "./app/angular2/module/app.module.ts",
+    "./app/angular/module/app.module.ts",
     "./typings.d.ts"
   ],
   "atom": {

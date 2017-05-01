@@ -1,5 +1,5 @@
-Roadmap of deep-microservices-root-angular2
-===========================================
+Roadmap of deep-microservices-root-angular
+==========================================
 
 Our list of roadmap features and functionality, in descending order of priority:
 
