@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { SimpleNotificationsModule } from 'angular2-notifications';
@@ -8,9 +8,9 @@ import { DeepEventService } from './services/deep-event.service';
 import { DeepNotifierService } from './services/deep-notifier.service';
 
 const imports = [
-  BrowserModule,
+  CommonModule,
   SimpleNotificationsModule.forRoot(),
-  routing
+  routing,
 ].concat(DeepFramework.angularDependencies);
 
 let providers : Array<any> = [
@@ -26,7 +26,7 @@ if (DeepFramework.Kernel.isLocalhost) {
 @NgModule({
     declarations: [
       RootAngular,
-      DefaultRootAngular
+      DefaultRootAngular,
     ],
     imports: imports,
     bootstrap: [RootAngular],
