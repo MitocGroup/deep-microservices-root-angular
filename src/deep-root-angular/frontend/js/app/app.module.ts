@@ -10,7 +10,7 @@ import { DeepNotifierService } from './services/deep-notifier.service';
 const imports = [
   CommonModule,
   SimpleNotificationsModule.forRoot(),
-  routing
+  routing,
 ].concat(DeepFramework.angularDependencies);
 
 let providers : Array<any> = [
@@ -26,7 +26,7 @@ if (DeepFramework.Kernel.isLocalhost) {
 @NgModule({
     declarations: [
       RootAngular,
-      DefaultRootAngular
+      DefaultRootAngular,
     ],
     imports: imports,
     bootstrap: [RootAngular],
