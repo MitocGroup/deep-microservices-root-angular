@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { SimpleNotificationsModule } from 'angular2-notifications';
@@ -8,7 +8,7 @@ import { DeepEventService } from './services/deep-event.service';
 import { DeepNotifierService } from './services/deep-notifier.service';
 
 const imports = [
-  BrowserModule,
+  CommonModule,
   SimpleNotificationsModule.forRoot(),
   routing
 ].concat(DeepFramework.angularDependencies);
