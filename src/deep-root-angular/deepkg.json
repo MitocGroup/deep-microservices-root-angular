@@ -1,8 +1,8 @@
 {
   "identifier": "deep-root-angular",
   "name": "deep-root-angular",
-  "description": "Manages root structure of a microservice based on AngularJS framework.",
-  "version": "0.0.1",
+  "description": "Manages root structure of a microservice based on Angular framework.",
+  "version": "0.0.2",
   "propertyRoot": true,
   "author": {
     "name": "Mitoc Group",
