@@ -14,6 +14,15 @@ How to use codeclimate/tslint on localhost
  2097  cd codeclimate-* && sudo make install`
 - [ ] `sudo codeclimate engines:enable tslint`
 
+### How to install Codeclimate CLI on Mac OS X: 
+- [ ] If you dont have brew, install it: `xcode-select --install && /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+- [ ] download docker from `https://docs.docker.com/docker-for-mac/install/#what-to-know-before-you-install`
+- [ ] run docker ( you can find it in launchpad )
+- [ ] `docker pull codeclimate/codeclimate`
+- [ ] `brew tap codeclimate/formulae`
+- [ ] `brew install codeclimate`
+- [ ] `codeclimate engines:enable tslint`
+
 ### How to use Codeclimate CLI:
 - [ ] Move into path with `.codeclimate.yml`
 - [ ] `sudo codeclimate analyze [path]`, if you want to run only **tslint** add at the end `-e tslint:beta`
