@@ -25,13 +25,14 @@ var webpackConfig = webpackMerge(helpers.webpackDepsConfig(), {
   },
 
   module: {
-    loaders: [{
-      test: /\.ts$/,
-      loaders: [
-        'awesome-typescript-loader',
-        'angular2-template-loader',
-      ]
-    },
+    loaders: [
+      {
+        test: /\.ts$/,
+        loaders: [
+          'awesome-typescript-loader',
+          'angular2-template-loader',
+        ]
+      },
       {
         test: /\.html$/,
         loader: 'raw-loader',
@@ -67,6 +68,18 @@ var webpackConfig = webpackMerge(helpers.webpackDepsConfig(), {
   
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
+      mangle: true,
+      compress: {
+        warnings: true, // Suppress uglification warnings
+        pure_getters: true,
+        unsafe: true,
+        unsafe_comps: true,
+        screw_ie8: true
+      },
+      output: {
+        comments: false,
+      },
+      exclude: [/\.min\.js$/gi], // skip pre-minified libs
       name: ['js/vendor', 'js/polyfills'],
     }),
   ],
