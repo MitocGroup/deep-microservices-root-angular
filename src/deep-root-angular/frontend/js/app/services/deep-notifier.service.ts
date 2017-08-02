@@ -2,7 +2,7 @@
  * Created by mgoria on 12/09/16.
  */
 
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { NotificationsService } from 'angular2-notifications';
 
 interface MsgLayout {
@@ -119,55 +119,17 @@ export class DeepNotifierService {
       return;
     }
 
-    if (msg.type === 'error') {
-      this.callError(msg);
-    } else if (msg.type === 'info') {
-      this.callInfo(msg);
-    } else if (msg.type === 'alert') {
-      this.callAlert(msg);
-    } else if (msg.type === 'success') {
-      this.callSuccess(msg);
+    if (msg.type === 'error' || msg.type === 'alert') {
+      if (this.deepLogger) {
+        this.deepLogger.err(`${msg.title}. ${msg.message}`);
+      }
     }
-  }
 
-  private callError(msg: MsgLayout) {
-    this.notifier.error(
-      msg.title,
-      msg.message,
-      msg.options,
+    const notifyFunc = this.notifier[msg.type](
+      msg.title, 
+      msg.message, 
+      msg.options
     );
 
-    if (this.deepLogger) {
-      this.deepLogger.err(`${msg.title}. ${msg.message}`);
-    }
-  }
 
-  private callInfo(msg: MsgLayout) {
-    this.notifier.info(
-      msg.title,
-      msg.message,
-      msg.options,
-    );
-  }
 
-  private callSuccess(msg: MsgLayout) {
-    this.notifier.success(
-      msg.title,
-      msg.message,
-      msg.options,
-    );
-  }
-
-  private callAlert(msg: MsgLayout) {
-    this.notifier.alert(
-      msg.title,
-      msg.message,
-      msg.options,
-    );
-
-    if (this.deepLogger) {
-      this.deepLogger.err(`${msg.title}. ${msg.message}`);
-    }
-  }
-
-}
