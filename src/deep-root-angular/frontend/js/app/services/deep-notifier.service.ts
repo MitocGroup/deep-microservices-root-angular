@@ -2,7 +2,7 @@
  * Created by mgoria on 12/09/16.
  */
 
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { NotificationsService } from 'angular2-notifications';
 
 interface MsgLayout {
