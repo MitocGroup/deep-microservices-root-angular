@@ -125,11 +125,13 @@ export class DeepNotifierService {
       }
     }
 
-    const notifyFunc = this.notifier[msg.type](
+    this.notifier[msg.type](
       msg.title, 
       msg.message, 
       msg.options
     );
+  }
 
+}
 
 
