@@ -1,10 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { DeepNotifierService } from './../../services/deep-notifier.service';
+import { Component, AfterViewInit, Input } from '@angular/core';
 
 @Component({
   selector: 'deep-notifications',
   template : '<simple-notifications [options]="options"></simple-notifications>',
 })
-export class DeepNotificationsComponent {
+export class DeepNotificationsComponent implements AfterViewInit {
+  constructor(private notifierService: DeepNotifierService) {}
   @Input() protected options: any = {
     timeOut: 5000,
     lastOnBottom: true,
@@ -19,4 +21,9 @@ export class DeepNotificationsComponent {
     animate: 'scale',
     position: ['right', 'bottom']
   };
+
+  ngAfterViewInit() {
+    this.notifierService.setAsReady();
+  }
+
 }
