@@ -6,10 +6,9 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
-    "removeComments": true,
+    "removeComments": false,
     "noImplicitAny": false,
-    "outDir": "./_build/",
-    "suppressImplicitAnyIndexErrors": true
+    "outDir": "./_build/"
   },
   "exclude": [
     "node_modules"
