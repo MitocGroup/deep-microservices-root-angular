@@ -36,7 +36,7 @@ $:
     ignore: ~
   coverage:
     pattern:
-      - /.+\/deep-root-angular\/.+\.js$/i
+      - /.+\.js$/i
     ignore:
       - /.+\.spec\.js$/i
     reporters:
