@@ -21,8 +21,10 @@ $:
     scripts: []
   emit:
     pattern:
-      - /.+\.spec\.js$/i
+      - /.+\.js$/i
     ignore:
+      - /^(.*\/)?backend(\/?$)?/i
+      - /^(.*\/)?frontend(\/?$)?/i
       - /^(.*\/)?node_modules(\/?$)?/i
   test:
     mocha:
@@ -34,11 +36,9 @@ $:
     ignore: ~
   coverage:
     pattern:
-      - /^src\/deep-root-angular\/.+\.js$/i
+      - /.+\/deep-root-angular\/.+\.js$/i
     ignore:
-      - /^src\/deep-root-angular\/backend(\/?$)?/i
-      - /^src\/deep-root-angular\/frontend(\/?$)?/i
-      - /^(.*\/)?node_modules(\/?$)?/i
+      - /.+\.spec\.js$/i
     reporters:
       text-summary: ~
       lcovonly:
@@ -60,4 +60,4 @@ $:
 
 ### Add other modules here...
 test-utils:
-  root: test
+  root: src/deep-root-angular
