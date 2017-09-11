@@ -13,10 +13,10 @@ let PACKAGE_JSON_FILE = 'package.json';
 let NODE_MODULES_DIR = 'node_modules';
 
 /**
- * @param {String|undefined} env
+ * @param env
+ * @returns {Promise}
  */
 function installNodeModules(env) {
-  let envArg = env ? `--${env}` : '';
   let microservices = this.microservice.property.microservices;
 
   return Promise.all(microservices.map(microservice => {
@@ -29,23 +29,33 @@ function installNodeModules(env) {
     }
 
     console.log(`Installing node_modules for "${microservice.identifier}"`);
-
-    return new Promise(resolve => {
-      exec(`cd ${frontendPath} && npm install ${envArg}`, (error, stdout, stderr) => {
-        if (error) {
-          console.error(stderr);
-        }
-
-        resolve();
-      });
-    });
+    return installMicroserviceDeps(frontendPath, env);
   }));
+}
+
+/**
+ * @param frontendPath
+ * @param env
+ * @returns {Promise}
+ */
+function installMicroserviceDeps(frontendPath, env) {
+  let envArg = env ? `--${env}` : '';
+
+  return new Promise(resolve => {
+    exec(`cd ${frontendPath} && npm install ${envArg}`, (error, stdout, stderr) => {
+      if (error) {
+        console.error(stderr);
+      }
+
+      return resolve(true);
+    });
+  });
 }
 
 /**
  * Watch html and javascript files of a specific microapplication
  * @param {String} frontendPath - path to frontend folder of the microapplication
- * @returns Promise
+ * @returns {Promise}
  */
 function watchMicroservice(frontendPath) {
   return new Promise(resolve => {
@@ -107,4 +117,5 @@ module.exports = {
   installNodeModules: installNodeModules,
   watchMicroservice: watchMicroservice,
   initializeApplication: initializeApplication,
+  installMicroserviceDeps: installMicroserviceDeps
 };
