@@ -45,9 +45,10 @@ function installNodeModules(env) {
 /**
  * Watch html and javascript files of a specific microapplication
  * @param {String} frontendPath - path to frontend folder of the microapplication
+ * @returns Promise
  */
 function watchMicroservice(frontendPath) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     exec(
       `cd ${frontendPath} && webpack --config webpack.config.js --watch`,
       {maxBuffer: 1024 * 1024},
@@ -58,7 +59,7 @@ function watchMicroservice(frontendPath) {
       }
     );
 
-    resolve();
+    return resolve(true);
   });
 }
 
@@ -91,13 +92,13 @@ function initializeApplication(frontendPath) {
 
   fs.writeFileSync(path.join(rootJsPath, 'microservices.ts'), msJsTemplate);
 
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     exec(`cd ${frontendPath} && webpack --config webpack.config.js`, (error, stdout, stderr) => {
       if (error) {
         console.error('Error during compiling: ',stderr);
       }
 
-      return resolve();
+      return resolve(true);
     });
   });
 }

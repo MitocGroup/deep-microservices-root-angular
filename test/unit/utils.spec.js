@@ -1,4 +1,7 @@
+'use strict';
+
 const chai = require('chai');
+const path = require('path');
 const utils = require('../../src/deep-root-angular/utils');
 
 describe('Check utils module', () => {
@@ -16,5 +19,11 @@ describe('Check utils module', () => {
 
   it('Test utils.initializeApplication to be a function', () => {
     chai.expect(utils.initializeApplication).to.be.an('function');
+  });
+
+  it('Test utils.watchMicroservice resolves Promise as true', () => {
+    utils.watchMicroservice(path.join(__dirname, '../../src/deep-root-angular/frontend')).then(res => {
+      chai.expect(res).to.be.true;
+    });
   });
 });
